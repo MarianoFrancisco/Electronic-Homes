@@ -68,5 +68,12 @@ public class ConexionBD{
     public static void listarEmpleados(JTable tablaEmpleados) throws SQLException{
         AccionesAdministradorBD.verEmpleados(conexionBD,sT,rS, tablaEmpleados);
     }
+    public static void ingresarEmpleado(JComboBox sucursales,JComboBox roles,JTextField textCui,JTextField textNombre,JTextField textTelefono,
+            JTextField textEdad,JTextField textUsuario,JTextField textPassword) throws SQLException{
+        AccionesAdministradorBD.registrarEmpleado(conexionBD,sT,rS,pST,sucursales,roles,textCui,textNombre,textTelefono,textEdad,textUsuario,textPassword,manejoEncriptaciones);
+    }
+    public static void cargarSucursalesRoles(JComboBox sucursales,JComboBox roles) throws SQLException{
+        AccionesAdministradorBD.agregarBoxSucursalRol(conexionBD,sT,rS,sucursales,roles);
+    }
     
 }

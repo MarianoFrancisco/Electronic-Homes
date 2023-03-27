@@ -95,7 +95,7 @@ public class Bodega extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 100, 1000, 470));
 
-        productosButton.setBackground(new java.awt.Color(0, 204, 204));
+        productosButton.setBackground(new java.awt.Color(0, 204, 255));
         productosButton.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         productosButton.setForeground(new java.awt.Color(0, 0, 0));
         productosButton.setText("Productos");

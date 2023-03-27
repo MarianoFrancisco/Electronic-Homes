@@ -25,7 +25,7 @@ public class Producto_Bodega extends javax.swing.JFrame {
      */
     Fondo inicio = new Fondo();//Creamos un nuevo fondo
     public Producto_Bodega() throws SQLException {
-        inicio.obtenerDireccion("/images/productos.jpeg");
+        inicio.obtenerDireccion("/images/Bodega.jpg");
         this.setContentPane(inicio);//Realizamos la pintada de nuestro fondo
         initComponents();
         ConexionBD.listarProductos(tablaProductos);
@@ -60,7 +60,6 @@ public class Producto_Bodega extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         textCodigoIngresar = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         textUbicacionIngresar = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -81,6 +80,8 @@ public class Producto_Bodega extends javax.swing.JFrame {
         textProveedorIngresar = new javax.swing.JTextField();
         bodegaLista = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -155,43 +156,43 @@ public class Producto_Bodega extends javax.swing.JFrame {
                 crearNuevoProductoActionPerformed(evt);
             }
         });
-        getContentPane().add(crearNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 410, 260, 25));
+        getContentPane().add(crearNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, 260, 25));
 
         textCodigoCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textCodigoCrearActionPerformed(evt);
             }
         });
-        getContentPane().add(textCodigoCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, 220, 30));
+        getContentPane().add(textCodigoCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, 220, 30));
 
         jLabel1.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Codigo");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 510, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 440, -1, -1));
 
         textNombreCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textNombreCrearActionPerformed(evt);
             }
         });
-        getContentPane().add(textNombreCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 220, 30));
+        getContentPane().add(textNombreCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 220, 30));
 
         jLabel2.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("nombre");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 140, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, -1, -1));
 
         textMarcaCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textMarcaCrearActionPerformed(evt);
             }
         });
-        getContentPane().add(textMarcaCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 250, 220, 30));
+        getContentPane().add(textMarcaCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 210, 220, 30));
 
         jLabel8.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("marca");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 220, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 180, -1, -1));
 
         textPrecioCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,24 +204,21 @@ public class Producto_Bodega extends javax.swing.JFrame {
                 textPrecioCrearKeyTyped(evt);
             }
         });
-        getContentPane().add(textPrecioCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 330, 220, 30));
+        getContentPane().add(textPrecioCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 280, 220, 30));
 
         jLabel9.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("precio");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 300, -1, -1));
+        jLabel9.setText("bODEGA");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 475, 70, 20));
 
         textCodigoIngresar.setFont(new java.awt.Font("Engravers MT", 0, 18)); // NOI18N
         textCodigoIngresar.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(textCodigoIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 510, 70, 20));
+        getContentPane().add(textCodigoIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 440, 70, 20));
 
         jLabel10.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Codigo");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 70, -1, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ReportesFondo.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 240, 330));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, -1, -1));
 
         textUbicacionIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,7 +239,7 @@ public class Producto_Bodega extends javax.swing.JFrame {
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 550, -1, -1));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ingresar.png"))); // NOI18N
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 460, -1, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 390, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
@@ -325,10 +323,18 @@ public class Producto_Bodega extends javax.swing.JFrame {
         });
         getContentPane().add(textProveedorIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 560, 220, 30));
 
-        getContentPane().add(bodegaLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 470, 140, -1));
+        getContentPane().add(bodegaLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 502, 220, 30));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ReportesFondo.jpg"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 500, 240, 230));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 240, 300));
+
+        jLabel21.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setText("precio");
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 250, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ReportesFondo.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 240, 270));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -482,6 +488,7 @@ public class Producto_Bodega extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
