@@ -6,10 +6,12 @@
 package com.camposeco.proyecto1archivos.frame.administrador;
 
 import com.camposeco.proyecto1archivos.Fondo;
+import com.camposeco.proyecto1archivos.bd.ConexionBD;
 import com.camposeco.proyecto1archivos.frame.Start;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -104,11 +106,21 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         productoMasIngresoSucursal.setBackground(new java.awt.Color(255, 255, 51));
         productoMasIngresoSucursal.setForeground(new java.awt.Color(0, 0, 0));
         productoMasIngresoSucursal.setText("PRODUCTOS CON MÁS INGRESOS POR SUCURSAL");
+        productoMasIngresoSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productoMasIngresoSucursalActionPerformed(evt);
+            }
+        });
         getContentPane().add(productoMasIngresoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, -1, -1));
 
         productoMasIngreso.setBackground(new java.awt.Color(255, 255, 51));
         productoMasIngreso.setForeground(new java.awt.Color(0, 0, 0));
         productoMasIngreso.setText("PRODUCTOS CON MÁS INGRESOS");
+        productoMasIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productoMasIngresoActionPerformed(evt);
+            }
+        });
         getContentPane().add(productoMasIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
 
         clienteMasGanancia.setBackground(new java.awt.Color(255, 255, 51));
@@ -144,16 +156,31 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         sucursalMasIngreso.setBackground(new java.awt.Color(255, 255, 51));
         sucursalMasIngreso.setForeground(new java.awt.Color(0, 0, 0));
         sucursalMasIngreso.setText("SUCURSALES CON MÁS INGRESOS");
+        sucursalMasIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sucursalMasIngresoActionPerformed(evt);
+            }
+        });
         getContentPane().add(sucursalMasIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 600, -1, -1));
 
         empleadoMasVenta.setBackground(new java.awt.Color(255, 255, 51));
         empleadoMasVenta.setForeground(new java.awt.Color(0, 0, 0));
         empleadoMasVenta.setText("EMPLEADOS CON MÁS VENTAS");
+        empleadoMasVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empleadoMasVentaActionPerformed(evt);
+            }
+        });
         getContentPane().add(empleadoMasVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 600, -1, -1));
 
         empleadoMasIngreso.setBackground(new java.awt.Color(255, 255, 51));
         empleadoMasIngreso.setForeground(new java.awt.Color(0, 0, 0));
         empleadoMasIngreso.setText("EMPLEADOS CON MÁS INGRESOS");
+        empleadoMasIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empleadoMasIngresoActionPerformed(evt);
+            }
+        });
         getContentPane().add(empleadoMasIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 600, -1, -1));
 
         productoMasVenididoSucursal.setBackground(new java.awt.Color(255, 255, 51));
@@ -231,20 +258,76 @@ public class Administrador_Reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_regresarOrdenActionPerformed
 
     private void clienteMasGananciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteMasGananciaActionPerformed
-        // TODO add your handling code here:
+        try {
+            ConexionBD.generarReporte(top10, 2);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al generar reporte");
+        }
     }//GEN-LAST:event_clienteMasGananciaActionPerformed
 
     private void sucursalMasVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sucursalMasVentaActionPerformed
-        // TODO add your handling code here:
+        try {
+            ConexionBD.generarReporte(top3, 3);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al generar reporte");
+        }
     }//GEN-LAST:event_sucursalMasVentaActionPerformed
 
     private void productoMasVendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productoMasVendidoActionPerformed
-        // TODO add your handling code here:
+        try {
+            ConexionBD.generarReporte(top10, 1);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al generar reporte");
+        }
     }//GEN-LAST:event_productoMasVendidoActionPerformed
 
     private void productoMasVenididoSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productoMasVenididoSucursalActionPerformed
-        // TODO add your handling code here:
+        try {
+            ConexionBD.generarReporte(top5, 8);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al generar reporte");
+        }
     }//GEN-LAST:event_productoMasVenididoSucursalActionPerformed
+
+    private void productoMasIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productoMasIngresoActionPerformed
+        try {
+            ConexionBD.generarReporte(top10, 7);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al generar reporte");
+        }
+    }//GEN-LAST:event_productoMasIngresoActionPerformed
+
+    private void productoMasIngresoSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productoMasIngresoSucursalActionPerformed
+        try {
+            ConexionBD.generarReporte(top5, 9);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al generar reporte"+ex);
+        }
+    }//GEN-LAST:event_productoMasIngresoSucursalActionPerformed
+
+    private void sucursalMasIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sucursalMasIngresoActionPerformed
+        try {
+            ConexionBD.generarReporte(top3, 4);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al generar reporte");
+        }
+    }//GEN-LAST:event_sucursalMasIngresoActionPerformed
+
+    private void empleadoMasVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadoMasVentaActionPerformed
+        try {
+            ConexionBD.generarReporte(top3, 5);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al generar reporte");
+        }
+    }//GEN-LAST:event_empleadoMasVentaActionPerformed
+
+    private void empleadoMasIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadoMasIngresoActionPerformed
+        try {
+            ConexionBD.generarReporte(top3, 6);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al generar reporte");
+        }
+    }//GEN-LAST:event_empleadoMasIngresoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clienteMasGanancia;

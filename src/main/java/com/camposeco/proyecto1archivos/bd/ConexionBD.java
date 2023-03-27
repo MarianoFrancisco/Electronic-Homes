@@ -75,5 +75,13 @@ public class ConexionBD{
     public static void cargarSucursalesRoles(JComboBox sucursales,JComboBox roles) throws SQLException{
         AccionesAdministradorBD.agregarBoxSucursalRol(conexionBD,sT,rS,sucursales,roles);
     }
-    
+    public static void listarProductoSucursal(JTable tablaProductoSucursal) throws SQLException{
+        AccionesAdministradorBD.verProductoSucursal(conexionBD,sT,rS, tablaProductoSucursal);
+    }
+    public static void cargarSucursal(JComboBox sucursales) throws SQLException{
+        AccionesAdministradorBD.agregarBoxSucursal(conexionBD,sT,rS,sucursales);
+    }
+    public static void generarReporte(JTable tablaReporte,int generarReporte) throws SQLException{
+        AccionesAdministradorBD.generarReporte(conexionBD,sT,rS,tablaReporte,generarReporte);
+    }
 }

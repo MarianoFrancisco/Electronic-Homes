@@ -6,6 +6,7 @@
 package com.camposeco.proyecto1archivos.bd;
 
 import com.camposeco.proyecto1archivos.Encriptacion;
+import static com.camposeco.proyecto1archivos.frame.Start.empleado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -117,5 +118,189 @@ public class AccionesAdministradorBD {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al agregar datos a listados de sucursales y roles");
         }
+    }
+    public static void verProductoSucursal(Connection cnBD,Statement sT,ResultSet rS,JTable productos) throws SQLException{
+        DefaultTableModel modeloProducto = new DefaultTableModel() {
+            //True para hacer celdas editables, como no queremos eso, false
+            @Override public boolean isCellEditable(int row, int column) 
+            {
+                return false; 
+            } 
+        };
+        modeloProducto.addColumn("Codigo Producto");
+        modeloProducto.addColumn("Ubicacion");
+        modeloProducto.addColumn("Cantidad Sucursal");
+        String instruccionSql="SELECT * FROM ControlAdministrativo.Producto_Sucursal WHERE id_sucursal="+empleado.getId_sucursal()+" ;";
+        String[] elementosProducto = new String[6];
+        sT = cnBD.createStatement();
+        rS = sT.executeQuery(instruccionSql);
+        while (rS.next()) {
+            elementosProducto[0] = rS.getString(2);
+            elementosProducto[1] = rS.getString(3);
+            elementosProducto[2] = rS.getString(4);
+            modeloProducto.addRow(elementosProducto);
+        }
+        productos.setModel(modeloProducto);
+    }
+    public static void agregarBoxSucursal(Connection cnBD,Statement sT,ResultSet rS,JComboBox sucursal) throws SQLException{
+        String instruccionSql="SELECT nombre FROM ControlAdministrativo.Sucursal;";
+        sT = cnBD.createStatement();
+        rS = sT.executeQuery(instruccionSql);
+        while(rS.next()){
+            sucursal.addItem(rS.getString(1));
+        }
+    }
+    public static void generarReporte(Connection cnBD, Statement sT, ResultSet rS,JTable tablaReporte, int tipoReporte) throws SQLException{
+        String instruccionSql;
+        String instruccionSql2;
+        Statement sT1;
+        ResultSet rS1;
+        String[] elementosReporte;
+        sT = cnBD.createStatement();
+        sT1 = cnBD.createStatement();
+        DefaultTableModel modeloReporte = new DefaultTableModel(){
+            //True para hacer celdas editables, como no queremos eso, false
+            @Override public boolean isCellEditable(int row, int column) 
+            {
+                return false; 
+            } 
+        };
+        
+        switch(tipoReporte){
+            case 1:
+                modeloReporte.addColumn("Codigo");
+                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Cantidad vendida");
+                instruccionSql="SELECT distinct codigo_producto,sum(cantidad_compra) FROM ControlVenta.Producto_Factura GROUP BY codigo_producto ORDER BY sum DESC LIMIT 10;";
+                rS = sT.executeQuery(instruccionSql);
+                elementosReporte = new String[3];
+                while (rS.next()) {
+                    elementosReporte[0] = rS.getString(1);
+                    elementosReporte[1] = rS.getString(2);
+                    modeloReporte.addRow(elementosReporte);
+                }
+                break;
+            case 2:
+                modeloReporte.addColumn("Nit");
+                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Total gastado");
+                instruccionSql="SELECT nit,total_gasto FROM ControlPersona.Cliente ORDER BY total_gasto DESC LIMIT 10;";
+                rS = sT.executeQuery(instruccionSql);
+                elementosReporte = new String[3];
+                while (rS.next()) {
+                    elementosReporte[0] = rS.getString(1);
+                    elementosReporte[1] = rS.getString(2);
+                    modeloReporte.addRow(elementosReporte);
+                }
+                break;
+            case 3:
+                modeloReporte.addColumn("Sucursal");
+                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Cantidad de ventas");
+                instruccionSql="SELECT distinct id_sucursal,COUNT(*) FROM ControlVenta.Factura GROUP BY id_sucursal ORDER BY count DESC LIMIT 3;";
+                rS = sT.executeQuery(instruccionSql);
+                elementosReporte = new String[3];
+                while (rS.next()) {
+                    elementosReporte[0] = rS.getString(1);
+                    elementosReporte[1] = rS.getString(2);
+                    modeloReporte.addRow(elementosReporte);
+                }
+                break;
+            case 4:
+                modeloReporte.addColumn("Sucursal");
+                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Cantidad de ingresos");
+                instruccionSql="SELECT distinct id_sucursal,sum(total_venta) FROM ControlVenta.Factura GROUP BY id_sucursal ORDER BY sum DESC LIMIT 3;";
+                rS = sT.executeQuery(instruccionSql);
+                elementosReporte = new String[3];
+                while (rS.next()) {
+                    elementosReporte[0] = rS.getString(1);
+                    elementosReporte[1] = rS.getString(2);
+                    modeloReporte.addRow(elementosReporte);
+                }
+                break;
+            case 5:
+                modeloReporte.addColumn("Cui");
+                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Cantidad de ventas");
+                instruccionSql="SELECT distinct cui,COUNT(*) FROM ControlVenta.Factura GROUP BY cui ORDER BY count DESC LIMIT 3;";
+                rS = sT.executeQuery(instruccionSql);
+                elementosReporte = new String[3];
+                while (rS.next()) {
+                    elementosReporte[0] = rS.getString(1);
+                    elementosReporte[1] = rS.getString(2);
+                    modeloReporte.addRow(elementosReporte);
+                }
+                break;
+                
+            case 6:
+                modeloReporte.addColumn("Cui");
+                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Cantidad de ingresos");
+                instruccionSql="SELECT distinct cui,sum(total_venta) FROM ControlVenta.Factura GROUP BY cui ORDER BY sum DESC LIMIT 3;";
+                rS = sT.executeQuery(instruccionSql);
+                elementosReporte = new String[3];
+                while (rS.next()) {
+                    elementosReporte[0] = rS.getString(1);
+                    elementosReporte[1] = rS.getString(2);
+                    modeloReporte.addRow(elementosReporte);
+                }
+                break;
+                
+            case 7:
+                modeloReporte.addColumn("Codigo");
+                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Cantidad de ingresos");
+                instruccionSql="SELECT distinct codigo_producto,sum(total_producto_factura) FROM ControlVenta.Producto_Factura GROUP BY codigo_producto ORDER BY sum DESC LIMIT 10;";
+                rS = sT.executeQuery(instruccionSql);
+                elementosReporte = new String[3];
+                while (rS.next()) {
+                    elementosReporte[0] = rS.getString(1);
+                    elementosReporte[1] = rS.getString(2);
+                    modeloReporte.addRow(elementosReporte);
+                }
+                break;
+            case 8:
+                modeloReporte.addColumn("Sucursal");
+                modeloReporte.addColumn("Codigo");//agregar
+                modeloReporte.addColumn("Cantidad vendidos");
+                instruccionSql="SELECT COUNT(*) FROM ControlAdministrativo.Sucursal;";
+                rS1 = sT.executeQuery(instruccionSql);
+                if (rS1.next()) {
+                    for (int i = 1; i <= rS1.getInt(1); i++) {
+                        instruccionSql2 = "SELECT id_sucursal, codigo_producto,sum(cantidad_compra) FROM ControlVenta.Producto_Factura WHERE id_sucursal=" + i + " GROUP BY id_sucursal, codigo_producto ORDER BY sum DESC LIMIT 5;";
+                        rS = sT.executeQuery(instruccionSql2);
+                        elementosReporte = new String[3];
+                        while (rS.next()) {
+                            elementosReporte[0] = rS.getString(1);
+                            elementosReporte[1] = rS.getString(2);
+                            elementosReporte[2] = rS.getString(3);
+                            modeloReporte.addRow(elementosReporte);
+                        }
+                    }
+                }
+                break;
+            case 9:
+                modeloReporte.addColumn("Sucursal");
+                modeloReporte.addColumn("Codigo");//agregar
+                modeloReporte.addColumn("Cantidad ingresos");
+                instruccionSql="SELECT COUNT(*) FROM ControlAdministrativo.Sucursal;";
+                rS1 = sT.executeQuery(instruccionSql);
+                if (rS1.next()) {
+                    for (int i = 1; i <= rS1.getInt(1); i++) {
+                        instruccionSql2 = "SELECT id_sucursal, codigo_producto,sum(total_producto_factura) FROM ControlVenta.Producto_Factura WHERE id_sucursal="+i+" GROUP BY id_sucursal, codigo_producto ORDER BY sum DESC LIMIT 5;";
+                        rS = sT.executeQuery(instruccionSql2);
+                        elementosReporte = new String[3];
+                        while (rS.next()) {
+                            elementosReporte[0] = rS.getString(1);
+                            elementosReporte[1] = rS.getString(2);
+                            elementosReporte[2] = rS.getString(3);
+                            modeloReporte.addRow(elementosReporte);
+                        }
+                    }
+                }
+                break;
+        }
+        tablaReporte.setModel(modeloReporte);
     }
 }

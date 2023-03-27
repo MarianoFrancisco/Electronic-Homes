@@ -18,7 +18,7 @@ public class Empleado {
     String telefono;
     String usuario;
     String password_empleado;
-
+    
     public String getCui() {
         return cui;
     }

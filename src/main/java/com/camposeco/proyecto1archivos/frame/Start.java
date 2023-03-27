@@ -11,6 +11,7 @@ import com.camposeco.proyecto1archivos.frame.bodega.Bodega;
 import com.camposeco.proyecto1archivos.frame.administrador.Administrador;
 import com.camposeco.proyecto1archivos.frame.inventario.Inventario;
 import com.camposeco.proyecto1archivos.frame.vendedor.Vendedor;
+import com.camposeco.proyecto1archivos.identidad.Empleado;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +27,7 @@ public class Start extends javax.swing.JFrame {
     /**
      * Creates new form Start
      */
+    public static Empleado empleado=new Empleado();
     Fondo inicio = new Fondo();//Creamos un nuevo fondo
     public Start() {
         inicio.obtenerDireccion("/images/FondoOscuro.jpg");
@@ -128,8 +130,12 @@ public class Start extends javax.swing.JFrame {
                 this.dispose();
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        //iniciamos frame inicio
-                        new Inventario().setVisible(true);
+                        try {
+                            //iniciamos frame inicio
+                            new Inventario().setVisible(true);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 });
                 break;
