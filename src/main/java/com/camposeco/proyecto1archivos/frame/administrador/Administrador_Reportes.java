@@ -24,10 +24,11 @@ public class Administrador_Reportes extends javax.swing.JFrame {
      * Creates new form Start
      */
     Fondo inicio = new Fondo();//Creamos un nuevo fondo
-    public Administrador_Reportes() {
+    public Administrador_Reportes() throws SQLException {
         inicio.obtenerDireccion("/images/administrador.jpg");
         this.setContentPane(inicio);//Realizamos la pintada de nuestro fondo
         initComponents();
+        ConexionBD.cargarSucursal(textSucursal);
         this.setLocationRelativeTo(null);//Centramos nuestro frame
     }
 
@@ -61,6 +62,8 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        textSucursal = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -101,7 +104,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(top5);
 
-        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 870, 250));
+        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 870, 200));
 
         productoMasIngresoSucursal.setBackground(new java.awt.Color(255, 255, 51));
         productoMasIngresoSucursal.setForeground(new java.awt.Color(0, 0, 0));
@@ -111,7 +114,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 productoMasIngresoSucursalActionPerformed(evt);
             }
         });
-        getContentPane().add(productoMasIngresoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, -1, -1));
+        getContentPane().add(productoMasIngresoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 350, -1, -1));
 
         productoMasIngreso.setBackground(new java.awt.Color(255, 255, 51));
         productoMasIngreso.setForeground(new java.awt.Color(0, 0, 0));
@@ -121,7 +124,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 productoMasIngresoActionPerformed(evt);
             }
         });
-        getContentPane().add(productoMasIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
+        getContentPane().add(productoMasIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, -1, -1));
 
         clienteMasGanancia.setBackground(new java.awt.Color(255, 255, 51));
         clienteMasGanancia.setForeground(new java.awt.Color(0, 0, 0));
@@ -131,7 +134,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 clienteMasGananciaActionPerformed(evt);
             }
         });
-        getContentPane().add(clienteMasGanancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
+        getContentPane().add(clienteMasGanancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
 
         productoMasVendido.setBackground(new java.awt.Color(255, 255, 51));
         productoMasVendido.setForeground(new java.awt.Color(0, 0, 0));
@@ -141,7 +144,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 productoMasVendidoActionPerformed(evt);
             }
         });
-        getContentPane().add(productoMasVendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+        getContentPane().add(productoMasVendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
 
         sucursalMasVenta.setBackground(new java.awt.Color(255, 255, 51));
         sucursalMasVenta.setForeground(new java.awt.Color(0, 0, 0));
@@ -191,7 +194,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 productoMasVenididoSucursalActionPerformed(evt);
             }
         });
-        getContentPane().add(productoMasVenididoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, -1, -1));
+        getContentPane().add(productoMasVenididoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, -1, -1));
 
         top10.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -212,7 +215,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(top10);
 
-        getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 870, 230));
+        getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 870, 220));
 
         top3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -232,13 +235,20 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 740, -1, 40));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/10.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 40));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 40));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Top.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, 40));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 670, -1, 40));
+
+        getContentPane().add(textSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 250, -1));
+
+        jLabel1.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("SUCURSAL");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -259,7 +269,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
 
     private void clienteMasGananciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteMasGananciaActionPerformed
         try {
-            ConexionBD.generarReporte(top10, 2);
+            ConexionBD.generarReporte(top10, 2,textSucursal);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al generar reporte");
         }
@@ -267,7 +277,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
 
     private void sucursalMasVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sucursalMasVentaActionPerformed
         try {
-            ConexionBD.generarReporte(top3, 3);
+            ConexionBD.generarReporte(top3, 3,textSucursal);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al generar reporte");
         }
@@ -275,7 +285,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
 
     private void productoMasVendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productoMasVendidoActionPerformed
         try {
-            ConexionBD.generarReporte(top10, 1);
+            ConexionBD.generarReporte(top10, 1,textSucursal);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al generar reporte");
         }
@@ -283,7 +293,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
 
     private void productoMasVenididoSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productoMasVenididoSucursalActionPerformed
         try {
-            ConexionBD.generarReporte(top5, 8);
+            ConexionBD.generarReporte(top5, 8,textSucursal);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al generar reporte");
         }
@@ -291,7 +301,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
 
     private void productoMasIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productoMasIngresoActionPerformed
         try {
-            ConexionBD.generarReporte(top10, 7);
+            ConexionBD.generarReporte(top10, 7,textSucursal);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al generar reporte");
         }
@@ -299,7 +309,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
 
     private void productoMasIngresoSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productoMasIngresoSucursalActionPerformed
         try {
-            ConexionBD.generarReporte(top5, 9);
+            ConexionBD.generarReporte(top5, 9,textSucursal);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al generar reporte"+ex);
         }
@@ -307,7 +317,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
 
     private void sucursalMasIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sucursalMasIngresoActionPerformed
         try {
-            ConexionBD.generarReporte(top3, 4);
+            ConexionBD.generarReporte(top3, 4,textSucursal);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al generar reporte");
         }
@@ -315,7 +325,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
 
     private void empleadoMasVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadoMasVentaActionPerformed
         try {
-            ConexionBD.generarReporte(top3, 5);
+            ConexionBD.generarReporte(top3, 5,textSucursal);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al generar reporte");
         }
@@ -323,7 +333,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
 
     private void empleadoMasIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadoMasIngresoActionPerformed
         try {
-            ConexionBD.generarReporte(top3, 6);
+            ConexionBD.generarReporte(top3, 6,textSucursal);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al generar reporte");
         }
@@ -333,6 +343,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
     private javax.swing.JButton clienteMasGanancia;
     private javax.swing.JButton empleadoMasIngreso;
     private javax.swing.JButton empleadoMasVenta;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel7;
@@ -348,6 +359,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
     private javax.swing.JButton regresarOrden;
     private javax.swing.JButton sucursalMasIngreso;
     private javax.swing.JButton sucursalMasVenta;
+    private javax.swing.JComboBox<String> textSucursal;
     private javax.swing.JTable top10;
     private javax.swing.JTable top3;
     private javax.swing.JTable top5;

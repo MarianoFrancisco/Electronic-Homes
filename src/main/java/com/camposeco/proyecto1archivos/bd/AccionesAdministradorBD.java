@@ -150,7 +150,7 @@ public class AccionesAdministradorBD {
             sucursal.addItem(rS.getString(1));
         }
     }
-    public static void generarReporte(Connection cnBD, Statement sT, ResultSet rS,JTable tablaReporte, int tipoReporte) throws SQLException{
+    public static void generarReporte(Connection cnBD, Statement sT, ResultSet rS,JTable tablaReporte, int tipoReporte,JComboBox sucursal) throws SQLException{
         String instruccionSql;
         String instruccionSql2;
         Statement sT1;
@@ -264,19 +264,17 @@ public class AccionesAdministradorBD {
                 modeloReporte.addColumn("Sucursal");
                 modeloReporte.addColumn("Codigo");//agregar
                 modeloReporte.addColumn("Cantidad vendidos");
-                instruccionSql="SELECT COUNT(*) FROM ControlAdministrativo.Sucursal;";
+                instruccionSql="SELECT id_sucursal FROM ControlAdministrativo.Sucursal WHERE nombre='"+sucursal.getSelectedItem().toString()+"';";
                 rS1 = sT.executeQuery(instruccionSql);
                 if (rS1.next()) {
-                    for (int i = 1; i <= rS1.getInt(1); i++) {
-                        instruccionSql2 = "SELECT id_sucursal, codigo_producto,sum(cantidad_compra) FROM ControlVenta.Producto_Factura WHERE id_sucursal=" + i + " GROUP BY id_sucursal, codigo_producto ORDER BY sum DESC LIMIT 5;";
-                        rS = sT.executeQuery(instruccionSql2);
-                        elementosReporte = new String[3];
-                        while (rS.next()) {
-                            elementosReporte[0] = rS.getString(1);
-                            elementosReporte[1] = rS.getString(2);
-                            elementosReporte[2] = rS.getString(3);
-                            modeloReporte.addRow(elementosReporte);
-                        }
+                    instruccionSql2 = "SELECT id_sucursal, codigo_producto,sum(cantidad_compra) FROM ControlVenta.Producto_Factura WHERE id_sucursal=" + rS1.getString(1) + " GROUP BY id_sucursal, codigo_producto ORDER BY sum DESC LIMIT 5;";
+                    rS = sT.executeQuery(instruccionSql2);
+                    elementosReporte = new String[3];
+                    while (rS.next()) {
+                        elementosReporte[0] = rS.getString(1);
+                        elementosReporte[1] = rS.getString(2);
+                        elementosReporte[2] = rS.getString(3);
+                        modeloReporte.addRow(elementosReporte);
                     }
                 }
                 break;
@@ -284,19 +282,17 @@ public class AccionesAdministradorBD {
                 modeloReporte.addColumn("Sucursal");
                 modeloReporte.addColumn("Codigo");//agregar
                 modeloReporte.addColumn("Cantidad ingresos");
-                instruccionSql="SELECT COUNT(*) FROM ControlAdministrativo.Sucursal;";
+                instruccionSql="SELECT id_sucursal FROM ControlAdministrativo.Sucursal WHERE nombre='"+sucursal.getSelectedItem().toString()+"';";
                 rS1 = sT.executeQuery(instruccionSql);
                 if (rS1.next()) {
-                    for (int i = 1; i <= rS1.getInt(1); i++) {
-                        instruccionSql2 = "SELECT id_sucursal, codigo_producto,sum(total_producto_factura) FROM ControlVenta.Producto_Factura WHERE id_sucursal="+i+" GROUP BY id_sucursal, codigo_producto ORDER BY sum DESC LIMIT 5;";
-                        rS = sT.executeQuery(instruccionSql2);
-                        elementosReporte = new String[3];
-                        while (rS.next()) {
-                            elementosReporte[0] = rS.getString(1);
-                            elementosReporte[1] = rS.getString(2);
-                            elementosReporte[2] = rS.getString(3);
-                            modeloReporte.addRow(elementosReporte);
-                        }
+                    instruccionSql2 = "SELECT id_sucursal, codigo_producto,sum(total_producto_factura) FROM ControlVenta.Producto_Factura WHERE id_sucursal=" + rS1.getString(1) + " GROUP BY id_sucursal, codigo_producto ORDER BY sum DESC LIMIT 5;";
+                    rS = sT.executeQuery(instruccionSql2);
+                    elementosReporte = new String[3];
+                    while (rS.next()) {
+                        elementosReporte[0] = rS.getString(1);
+                        elementosReporte[1] = rS.getString(2);
+                        elementosReporte[2] = rS.getString(3);
+                        modeloReporte.addRow(elementosReporte);
                     }
                 }
                 break;

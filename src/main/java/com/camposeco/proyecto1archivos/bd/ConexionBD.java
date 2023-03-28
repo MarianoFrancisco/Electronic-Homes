@@ -81,7 +81,7 @@ public class ConexionBD{
     public static void cargarSucursal(JComboBox sucursales) throws SQLException{
         AccionesAdministradorBD.agregarBoxSucursal(conexionBD,sT,rS,sucursales);
     }
-    public static void generarReporte(JTable tablaReporte,int generarReporte) throws SQLException{
-        AccionesAdministradorBD.generarReporte(conexionBD,sT,rS,tablaReporte,generarReporte);
+    public static void generarReporte(JTable tablaReporte,int generarReporte,JComboBox sucursal) throws SQLException{
+        AccionesAdministradorBD.generarReporte(conexionBD,sT,rS,tablaReporte,generarReporte,sucursal);
     }
 }

@@ -10,6 +10,8 @@ import com.camposeco.proyecto1archivos.Fondo;
 import com.camposeco.proyecto1archivos.frame.Start;
 import java.awt.Toolkit;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -323,8 +325,12 @@ public class Administrador extends javax.swing.JFrame {
         this.dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //iniciamos frame inicio
-                new Administrador_Reportes().setVisible(true);
+                try {
+                    //iniciamos frame inicio
+                    new Administrador_Reportes().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }//GEN-LAST:event_generarReporteActionPerformed
