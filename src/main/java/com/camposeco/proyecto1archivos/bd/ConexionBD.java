@@ -42,6 +42,12 @@ public class ConexionBD{
     }
     //Vendedor
     //Inventario
+    public static void ingresoSucursal(JComboBox sucursal,JLabel codigo, JTextField ubicacion,JTextField cantidad) throws SQLException{
+        AccionesInventarioBD.moverDesdeSucursal(conexionBD, sT, rS, pST, sucursal, codigo, ubicacion, cantidad);
+    }
+    public static void ingresoBodega(JComboBox bodega,JLabel codigo, JTextField ubicacion,JTextField cantidad) throws SQLException{
+        AccionesInventarioBD.moverDesdeBodega(conexionBD, sT, rS, pST, bodega, codigo, ubicacion, cantidad);
+    }
     //Bodega
     public static void listarProductosBodega(JTable tablaProductosBodega) throws SQLException{
         AccionesBodegaBD.verProductosBodega(conexionBD,sT,rS, tablaProductosBodega);

@@ -10,6 +10,8 @@ import com.camposeco.proyecto1archivos.bd.ConexionBD;
 import com.camposeco.proyecto1archivos.frame.Start;
 import java.awt.Toolkit;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -110,12 +112,22 @@ public class Inventario extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Ingresar desde otra sucursal");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 740, -1, 20));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 51));
         jButton2.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Ingresar desde bodega");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 740, -1, -1));
 
         getContentPane().add(textIngresarSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 660, 230, 30));
@@ -281,6 +293,32 @@ public class Inventario extends javax.swing.JFrame {
     private void textUbicacionIngresarSucursalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textUbicacionIngresarSucursalKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_textUbicacionIngresarSucursalKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(textUbicacionIngresarSucursal.getText().isEmpty()||textCantidadIngresarSucursal.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Por favor llena la ubicacion y la cantidad");
+        }else{
+            try {
+                ConexionBD.ingresoSucursal(textIngresarSucursal, textCodigoIngresarSucursal, textUbicacionIngresarSucursal, textCantidadIngresarSucursal);
+                ConexionBD.listarProductoSucursal(tablaSucursal);
+            } catch (SQLException ex) {
+                JOptionPane.showConfirmDialog(null, "Error"+ex);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(textUbicacionIngresarBodega.getText().isEmpty()||textCantidadIngresarBodega.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Por favor llena la ubicacion y la cantidad");
+        }else{
+            try {
+                ConexionBD.ingresoBodega(textIngresarBodega, textCodigoIngresarBodega, textUbicacionIngresarBodega, textCantidadIngresarBodega);
+                ConexionBD.listarProductoSucursal(tablaSucursal);
+            } catch (SQLException ex) {
+                JOptionPane.showConfirmDialog(null, "Error"+ex);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
