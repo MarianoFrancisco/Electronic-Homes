@@ -24,10 +24,13 @@ public class Vendedor extends javax.swing.JFrame {
      * Creates new form Start
      */
     Fondo inicio = new Fondo();//Creamos un nuevo fondo
+    public static int valorVenta=0;
+    public static String valorNit="";
     public Vendedor() throws SQLException {
         inicio.obtenerDireccion("/images/ventas.jpg");
         this.setContentPane(inicio);//Realizamos la pintada de nuestro fondo
         initComponents();
+        valorVenta=0;
         ConexionBD.listarProductoSucursal(tablaSucursal);
         this.setLocationRelativeTo(null);//Centramos nuestro frame
     }
@@ -48,6 +51,28 @@ public class Vendedor extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         clientes = new javax.swing.JButton();
+        ingresarCliente = new javax.swing.JButton();
+        textNit = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        textTelefono = new javax.swing.JTextField();
+        textNombre = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        textNitVenta = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        empezarVenta = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        finalizarVenta = new javax.swing.JButton();
+        agregarProducto = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        textCantidad = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        textCodigo = new javax.swing.JLabel();
+        NIT = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -86,63 +111,340 @@ public class Vendedor extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaSucursal);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 550, 430));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 510, 610));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/textSucursal.png"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, 60));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, 60));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/productos.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, 60));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, 60));
 
         clientes.setBackground(new java.awt.Color(51, 204, 255));
         clientes.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         clientes.setForeground(new java.awt.Color(0, 0, 0));
-        clientes.setText("Clientes");
+        clientes.setText("cLIENTES");
         clientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientesActionPerformed(evt);
             }
         });
-        getContentPane().add(clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 130, 60));
+        getContentPane().add(clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 450, 50));
+
+        ingresarCliente.setBackground(new java.awt.Color(255, 255, 0));
+        ingresarCliente.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        ingresarCliente.setForeground(new java.awt.Color(0, 0, 0));
+        ingresarCliente.setText("Registrar cliente");
+        ingresarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarClienteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ingresarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 270, 210, 30));
+
+        textNit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textNitKeyTyped(evt);
+            }
+        });
+        getContentPane().add(textNit, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 190, 30));
+
+        jLabel14.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("NIT");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("telefono");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 180, -1, -1));
+
+        textTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textTelefonoKeyTyped(evt);
+            }
+        });
+        getContentPane().add(textTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, 180, 30));
+
+        textNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textNombreKeyTyped(evt);
+            }
+        });
+        getContentPane().add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 190, 30));
+
+        jLabel17.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("nombre");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 240, -1, -1));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/agregarProducto.png"))); // NOI18N
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, -1, -1));
+
+        textNitVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textNitVentaKeyTyped(evt);
+            }
+        });
+        getContentPane().add(textNitVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, 190, 30));
+
+        jLabel19.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("NIT");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 420, -1, -1));
+
+        empezarVenta.setBackground(new java.awt.Color(0, 204, 0));
+        empezarVenta.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        empezarVenta.setForeground(new java.awt.Color(0, 0, 0));
+        empezarVenta.setText("Empezar venta");
+        empezarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empezarVentaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(empezarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 410, 190, 30));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ReportesFondo.jpg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 450, 160));
+
+        finalizarVenta.setBackground(new java.awt.Color(255, 0, 0));
+        finalizarVenta.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        finalizarVenta.setForeground(new java.awt.Color(0, 0, 0));
+        finalizarVenta.setText("Finalizar venta");
+        finalizarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarVentaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(finalizarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 470, 190, 30));
+
+        agregarProducto.setBackground(new java.awt.Color(255, 255, 0));
+        agregarProducto.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        agregarProducto.setForeground(new java.awt.Color(0, 0, 0));
+        agregarProducto.setText("Agregar producto");
+        agregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarProductoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(agregarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 690, 220, 30));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ReportesFondo.jpg"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, 450, 130));
+
+        textCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textCantidadKeyTyped(evt);
+            }
+        });
+        getContentPane().add(textCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 650, 190, 30));
+
+        jLabel20.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("cantidad");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 620, -1, -1));
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ingresar.png"))); // NOI18N
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, -1, -1));
+
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/realizarVenta.png"))); // NOI18N
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 340, -1, -1));
+
+        textCodigo.setFont(new java.awt.Font("Engravers MT", 0, 36)); // NOI18N
+        textCodigo.setForeground(new java.awt.Color(204, 0, 0));
+        getContentPane().add(textCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 630, 120, 50));
+
+        NIT.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        NIT.setForeground(new java.awt.Color(0, 0, 0));
+        NIT.setText("Codigo");
+        getContentPane().add(NIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 650, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ReportesFondo.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 600, 450, 130));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarOrdenActionPerformed
-        this.dispose();
+        if (valorVenta==0) {
+            this.dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //iniciamos frame inicio
                 new Start().setVisible(true);
             }
         });
+        }else{
+            JOptionPane.showMessageDialog(null, "Tiene una venta en proceso, finalicela antes de cerrar sesion");
+        }
+        
     }//GEN-LAST:event_regresarOrdenActionPerformed
 
     private void clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesActionPerformed
-        this.dispose();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    //iniciamos frame inicio
-                    new Vendedor_Clientes().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+        if (valorVenta == 0) {
+            this.dispose();
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        //iniciamos frame inicio
+                        new Vendedor_Clientes().setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            JOptionPane.showMessageDialog(null, "Tiene una venta en proceso, finalicela antes de ir al apartado de clientes");
+        }
     }//GEN-LAST:event_clientesActionPerformed
 
     private void tablaSucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaSucursalMouseClicked
-        // TODO add your handling code here:
+        try{
+            int renglon = tablaSucursal.getSelectedRow();
+            textCodigo.setText(tablaSucursal.getValueAt(renglon, 0).toString());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_tablaSucursalMouseClicked
 
+    private void textNitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNitKeyTyped
+        if(textNit.getText().length()>8){//restringimos que no puede escribir mas de 13 digitos
+            evt.consume();//el evento no permite seguir escribiendo
+            Toolkit.getDefaultToolkit().beep();//sonido de error
+            JOptionPane.showMessageDialog(null, "El nit unicamente tiene 9 digitos");//Mensaje condicional digitos nit
+        }
+        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
+        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
+            evt.consume();//el evento no permite seguir escribiendo
+            Toolkit.getDefaultToolkit().beep();//sonido de error
+            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
+        }
+    }//GEN-LAST:event_textNitKeyTyped
+
+    private void textTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textTelefonoKeyTyped
+        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
+        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
+            evt.consume();//el evento no permite seguir escribiendo
+            Toolkit.getDefaultToolkit().beep();//sonido de error
+            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
+        }
+    }//GEN-LAST:event_textTelefonoKeyTyped
+
+    private void textNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNombreKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNombreKeyTyped
+
+    private void ingresarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarClienteActionPerformed
+        if(textNit.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Llena el campo de nit");
+        }else{
+            if(textNit.getText().length()==9){
+                try {
+                    ConexionBD.ingresarCliente(textNit, textNombre, textTelefono);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al ingresar cliente");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "El nit lleva 9 digitos");
+            }
+            
+        }
+        
+    }//GEN-LAST:event_ingresarClienteActionPerformed
+
+    private void textNitVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNitVentaKeyTyped
+        if(textNitVenta.getText().length()>8){//restringimos que no puede escribir mas de 13 digitos
+            evt.consume();//el evento no permite seguir escribiendo
+            Toolkit.getDefaultToolkit().beep();//sonido de error
+            JOptionPane.showMessageDialog(null, "El nit unicamente tiene 9 digitos");//Mensaje condicional digitos nit
+        }
+        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
+        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
+            evt.consume();//el evento no permite seguir escribiendo
+            Toolkit.getDefaultToolkit().beep();//sonido de error
+            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
+        }
+    }//GEN-LAST:event_textNitVentaKeyTyped
+
+    private void empezarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empezarVentaActionPerformed
+        if (textNitVenta.getText().isEmpty()) {
+            textNitVenta.setText("C/F");
+        }
+        if (valorVenta == 0) {
+            try {
+                ConexionBD.empezarVenta(textNitVenta);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al empezar venta");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ya hay una venta en proceso, finalizala antes de empezar otra");
+        }
+    }//GEN-LAST:event_empezarVentaActionPerformed
+
+    private void finalizarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarVentaActionPerformed
+        if (valorVenta == 0) {
+            JOptionPane.showMessageDialog(null, "Primero empieza una venta");
+        }else{
+            try {
+                ConexionBD.finalizarVenta();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "No se pudo finalizar la venta");
+            }
+        }
+    }//GEN-LAST:event_finalizarVentaActionPerformed
+
+    private void agregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProductoActionPerformed
+        if (valorVenta == 0) {
+            JOptionPane.showMessageDialog(null, "Primero empieza una venta");
+        } else if (textCantidad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingresa la cantidad del producto adquirido");
+        } else {
+            try {
+                ConexionBD.agregarProductoVenta(textCodigo, textCantidad);
+                ConexionBD.listarProductoSucursal(tablaSucursal);
+            } catch (SQLException ex) {
+                JOptionPane.showConfirmDialog(null, "Error al agregar producto");
+            }
+        }
+    }//GEN-LAST:event_agregarProductoActionPerformed
+
+    private void textCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCantidadKeyTyped
+        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
+        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
+            evt.consume();//el evento no permite seguir escribiendo
+            Toolkit.getDefaultToolkit().beep();//sonido de error
+            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
+        }
+    }//GEN-LAST:event_textCantidadKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel NIT;
+    private javax.swing.JButton agregarProducto;
     private javax.swing.JButton clientes;
+    private javax.swing.JButton empezarVenta;
+    private javax.swing.JButton finalizarVenta;
+    private javax.swing.JButton ingresarCliente;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton regresarOrden;
     private javax.swing.JTable tablaSucursal;
+    private javax.swing.JTextField textCantidad;
+    private javax.swing.JLabel textCodigo;
+    private javax.swing.JTextField textNit;
+    private javax.swing.JTextField textNitVenta;
+    private javax.swing.JTextField textNombre;
+    private javax.swing.JTextField textTelefono;
     // End of variables declaration//GEN-END:variables
 }
