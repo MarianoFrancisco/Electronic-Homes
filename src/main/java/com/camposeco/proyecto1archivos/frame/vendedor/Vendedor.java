@@ -6,6 +6,7 @@
 package com.camposeco.proyecto1archivos.frame.vendedor;
 
 import com.camposeco.proyecto1archivos.Fondo;
+import com.camposeco.proyecto1archivos.Restricciones;
 import com.camposeco.proyecto1archivos.bd.ConexionBD;
 import com.camposeco.proyecto1archivos.frame.Start;
 import java.awt.Toolkit;
@@ -334,21 +335,23 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_textNombreKeyTyped
 
     private void ingresarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarClienteActionPerformed
-        if(textNit.getText().isEmpty()){
+        if (textNit.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Llena el campo de nit");
-        }else{
-            if(textNit.getText().length()==9){
-                try {
-                    ConexionBD.ingresarCliente(textNit, textNombre, textTelefono);
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Error al ingresar cliente");
+        } else {
+            if (Restricciones.verificarNumero(textTelefono.getText()) == true||textTelefono.getText().isEmpty()) {
+                if (textNit.getText().length() == 9) {
+                    try {
+                        ConexionBD.ingresarCliente(textNit, textNombre, textTelefono);
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "Error al ingresar cliente");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "El nit lleva 9 digitos");
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "El nit lleva 9 digitos");
+                JOptionPane.showMessageDialog(null, "Ingrese un formato correcto de numero telefonico");
             }
-            
         }
-        
     }//GEN-LAST:event_ingresarClienteActionPerformed
 
     private void textNitVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNitVentaKeyTyped
@@ -370,11 +373,16 @@ public class Vendedor extends javax.swing.JFrame {
             textNitVenta.setText("C/F");
         }
         if (valorVenta == 0) {
-            try {
-                ConexionBD.empezarVenta(textNitVenta);
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al empezar venta");
+            if (textNitVenta.getText().length()==9||textNitVenta.getText().equals("C/F")) {
+                try {
+                    ConexionBD.empezarVenta(textNitVenta);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al empezar venta");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "El nit lleva 9 digitos");
             }
+            
         } else {
             JOptionPane.showMessageDialog(null, "Ya hay una venta en proceso, finalizala antes de empezar otra");
         }
