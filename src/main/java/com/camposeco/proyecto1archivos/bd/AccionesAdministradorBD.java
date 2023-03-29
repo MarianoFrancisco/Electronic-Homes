@@ -120,6 +120,8 @@ public class AccionesAdministradorBD {
         }
     }
     public static void verProductoSucursal(Connection cnBD,Statement sT,ResultSet rS,JTable productos) throws SQLException{
+        Statement sT1;
+        ResultSet rS1;
         DefaultTableModel modeloProducto = new DefaultTableModel() {
             //True para hacer celdas editables, como no queremos eso, false
             @Override public boolean isCellEditable(int row, int column) 
@@ -128,16 +130,23 @@ public class AccionesAdministradorBD {
             } 
         };
         modeloProducto.addColumn("Codigo Producto");
+        modeloProducto.addColumn("Nombre");
         modeloProducto.addColumn("Ubicacion");
         modeloProducto.addColumn("Cantidad Sucursal");
         String instruccionSql="SELECT * FROM ControlAdministrativo.Producto_Sucursal WHERE id_sucursal="+empleado.getId_sucursal()+" ;";
         String[] elementosProducto = new String[6];
         sT = cnBD.createStatement();
+        sT1 = cnBD.createStatement();
         rS = sT.executeQuery(instruccionSql);
         while (rS.next()) {
             elementosProducto[0] = rS.getString(2);
-            elementosProducto[1] = rS.getString(3);
-            elementosProducto[2] = rS.getString(4);
+            String instruccionSql2="SELECT nombre FROM ControlAdministrativo.Producto WHERE codigo_producto='"+rS.getString(2)+"' ;";
+            rS1 = sT1.executeQuery(instruccionSql2);
+            if(rS1.next()){
+                elementosProducto[1] = rS1.getString(1);
+            }
+            elementosProducto[2] = rS.getString(3);
+            elementosProducto[3] = rS.getString(4);
             modeloProducto.addRow(elementosProducto);
         }
         productos.setModel(modeloProducto);

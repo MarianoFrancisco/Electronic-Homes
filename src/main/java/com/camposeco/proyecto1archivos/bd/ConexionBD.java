@@ -41,6 +41,12 @@ public class ConexionBD{
         return ManejoEncriptacionBD.encriptarPassword(conexionBD,sT,rS, usuario,password);
     }
     //Vendedor
+    public static void listarClientes(JTable tablaClientes) throws SQLException{
+        AccionesVendedorBD.verClientes(conexionBD,sT,rS, tablaClientes);
+    }
+    public static void modificarCliente(JLabel nit, JTextField nombre,JTextField telefono,JTextField totalGasto,JTextField ultimoGasto) throws SQLException{
+        AccionesVendedorBD.modificarCliente(conexionBD, rS, pST, nit,nombre,telefono,totalGasto,ultimoGasto);
+    }
     //Inventario
     public static void ingresoSucursal(JComboBox sucursal,JLabel codigo, JTextField ubicacion,JTextField cantidad) throws SQLException{
         AccionesInventarioBD.moverDesdeSucursal(conexionBD, sT, rS, pST, sucursal, codigo, ubicacion, cantidad);

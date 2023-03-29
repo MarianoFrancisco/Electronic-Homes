@@ -121,8 +121,12 @@ public class Start extends javax.swing.JFrame {
                 this.dispose();
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        //iniciamos frame inicio
-                        new Vendedor().setVisible(true);
+                        try {
+                            //iniciamos frame inicio
+                            new Vendedor().setVisible(true);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 });
                 break;

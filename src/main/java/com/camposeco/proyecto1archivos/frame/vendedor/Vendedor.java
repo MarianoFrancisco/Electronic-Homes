@@ -6,8 +6,12 @@
 package com.camposeco.proyecto1archivos.frame.vendedor;
 
 import com.camposeco.proyecto1archivos.Fondo;
+import com.camposeco.proyecto1archivos.bd.ConexionBD;
 import com.camposeco.proyecto1archivos.frame.Start;
 import java.awt.Toolkit;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,10 +24,11 @@ public class Vendedor extends javax.swing.JFrame {
      * Creates new form Start
      */
     Fondo inicio = new Fondo();//Creamos un nuevo fondo
-    public Vendedor() {
+    public Vendedor() throws SQLException {
         inicio.obtenerDireccion("/images/ventas.jpg");
         this.setContentPane(inicio);//Realizamos la pintada de nuestro fondo
         initComponents();
+        ConexionBD.listarProductoSucursal(tablaSucursal);
         this.setLocationRelativeTo(null);//Centramos nuestro frame
     }
 
@@ -37,7 +42,12 @@ public class Vendedor extends javax.swing.JFrame {
     private void initComponents() {
 
         regresarOrden = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaSucursal = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        clientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -55,8 +65,45 @@ public class Vendedor extends javax.swing.JFrame {
         });
         getContentPane().add(regresarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 170, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Logo.PNG"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 740, -1, 40));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Logo.PNG"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 740, -1, 40));
+
+        tablaSucursal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tablaSucursal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaSucursalMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaSucursal);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 550, 430));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/textSucursal.png"))); // NOI18N
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, 60));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/productos.png"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, 60));
+
+        clientes.setBackground(new java.awt.Color(51, 204, 255));
+        clientes.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        clientes.setForeground(new java.awt.Color(0, 0, 0));
+        clientes.setText("Clientes");
+        clientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 130, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -71,8 +118,31 @@ public class Vendedor extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_regresarOrdenActionPerformed
 
+    private void clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesActionPerformed
+        this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    //iniciamos frame inicio
+                    new Vendedor_Clientes().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }//GEN-LAST:event_clientesActionPerformed
+
+    private void tablaSucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaSucursalMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaSucursalMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton clientes;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton regresarOrden;
+    private javax.swing.JTable tablaSucursal;
     // End of variables declaration//GEN-END:variables
 }
