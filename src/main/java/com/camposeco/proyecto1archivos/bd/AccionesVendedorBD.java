@@ -219,15 +219,15 @@ public class AccionesVendedorBD {
         sT1 = cnBD.createStatement();
         rS = sT.executeQuery(instruccionSql);
         rS1 = sT1.executeQuery(instruccionSql2);
-        if(rS.next()){
-            totalSinDescuento=rS.getDouble(1);
+        if (rS.next()) {
+            totalSinDescuento = rS.getDouble(1);
+            if (rS1.next()) {
+                gastoAcumuladoCliente = rS1.getDouble(1);
+                ultimaCompra = rS1.getDouble(2);
+            }
             if (Vendedor.valorNit.equals("C/F")) {
                 descuento = 0;
             } else {
-                if (rS1.next()) {
-                    gastoAcumuladoCliente = rS1.getDouble(1);
-                    ultimaCompra = rS1.getDouble(2);
-                }
                 if (ultimaCompra >= 1000 && ultimaCompra < 5000) {
                     descuento = 0.02;
                 } else if (ultimaCompra >= 5000 && ultimaCompra < 10000) {

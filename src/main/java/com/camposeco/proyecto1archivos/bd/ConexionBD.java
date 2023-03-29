@@ -26,8 +26,10 @@ public class ConexionBD{
     public boolean empezarConexion() throws Exception{
         String driver= "org.postgresql.Driver";
         String link= "jdbc:postgresql://localhost:5432/electronic_homes";
-        String usuario="postgres";
-        String password= "Lis!1941";
+        //String usuario="postgres";
+        //String password= "Lis!1941";
+        String usuario="electronic";
+        String password= "Elec!5923*home!";
         try {
             Class.forName(driver);
             conexionBD=DriverManager.getConnection(link,usuario,password);
