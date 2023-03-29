@@ -162,11 +162,15 @@ public class AccionesAdministradorBD {
     public static void generarReporte(Connection cnBD, Statement sT, ResultSet rS,JTable tablaReporte, int tipoReporte,JComboBox sucursal) throws SQLException{
         String instruccionSql;
         String instruccionSql2;
+        String datoExtra;
         Statement sT1;
         ResultSet rS1;
+        Statement sT2;
+        ResultSet rS2;
         String[] elementosReporte;
         sT = cnBD.createStatement();
         sT1 = cnBD.createStatement();
+        sT2 = cnBD.createStatement();
         DefaultTableModel modeloReporte = new DefaultTableModel(){
             //True para hacer celdas editables, como no queremos eso, false
             @Override public boolean isCellEditable(int row, int column) 
@@ -178,94 +182,129 @@ public class AccionesAdministradorBD {
         switch(tipoReporte){
             case 1:
                 modeloReporte.addColumn("Codigo");
-                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Nombre");//agregar
                 modeloReporte.addColumn("Cantidad vendida");
                 instruccionSql="SELECT distinct codigo_producto,sum(cantidad_compra) FROM ControlVenta.Producto_Factura GROUP BY codigo_producto ORDER BY sum DESC LIMIT 10;";
                 rS = sT.executeQuery(instruccionSql);
                 elementosReporte = new String[3];
                 while (rS.next()) {
                     elementosReporte[0] = rS.getString(1);
-                    elementosReporte[1] = rS.getString(2);
+                    datoExtra="SELECT nombre FROM ControlAdministrativo.Producto WHERE codigo_producto='"+rS.getString(1)+"';";
+                    rS2=sT2.executeQuery(datoExtra);
+                    if(rS2.next()){
+                        elementosReporte[1] = rS2.getString(1);
+                    }
+                    elementosReporte[2] = rS.getString(2);
                     modeloReporte.addRow(elementosReporte);
                 }
                 break;
             case 2:
                 modeloReporte.addColumn("Nit");
-                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Nombre");//agregar
                 modeloReporte.addColumn("Total gastado");
                 instruccionSql="SELECT nit,total_gasto FROM ControlPersona.Cliente ORDER BY total_gasto DESC LIMIT 10;";
                 rS = sT.executeQuery(instruccionSql);
                 elementosReporte = new String[3];
                 while (rS.next()) {
                     elementosReporte[0] = rS.getString(1);
-                    elementosReporte[1] = rS.getString(2);
+                    datoExtra="SELECT nombre FROM ControlPersona.Cliente WHERE nit='"+rS.getString(1)+"';";
+                    rS2=sT2.executeQuery(datoExtra);
+                    if(rS2.next()){
+                        elementosReporte[1] = rS2.getString(1);
+                    }
+                    elementosReporte[2] = rS.getString(2);
                     modeloReporte.addRow(elementosReporte);
                 }
                 break;
             case 3:
                 modeloReporte.addColumn("Sucursal");
-                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Nombre");//agregar
                 modeloReporte.addColumn("Cantidad de ventas");
                 instruccionSql="SELECT distinct id_sucursal,COUNT(*) FROM ControlVenta.Factura GROUP BY id_sucursal ORDER BY count DESC LIMIT 3;";
                 rS = sT.executeQuery(instruccionSql);
                 elementosReporte = new String[3];
                 while (rS.next()) {
                     elementosReporte[0] = rS.getString(1);
-                    elementosReporte[1] = rS.getString(2);
+                    datoExtra="SELECT nombre FROM ControlAdministrativo.Sucursal WHERE id_sucursal="+rS.getString(1)+";";
+                    rS2=sT2.executeQuery(datoExtra);
+                    if(rS2.next()){
+                        elementosReporte[1] = rS2.getString(1);
+                    }
+                    elementosReporte[2] = rS.getString(2);
                     modeloReporte.addRow(elementosReporte);
                 }
                 break;
             case 4:
                 modeloReporte.addColumn("Sucursal");
-                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Nombre");//agregar
                 modeloReporte.addColumn("Cantidad de ingresos");
                 instruccionSql="SELECT distinct id_sucursal,sum(total_venta) FROM ControlVenta.Factura GROUP BY id_sucursal ORDER BY sum DESC LIMIT 3;";
                 rS = sT.executeQuery(instruccionSql);
                 elementosReporte = new String[3];
                 while (rS.next()) {
                     elementosReporte[0] = rS.getString(1);
-                    elementosReporte[1] = rS.getString(2);
+                    datoExtra="SELECT nombre FROM ControlAdministrativo.Sucursal WHERE id_sucursal="+rS.getString(1)+";";
+                    rS2=sT2.executeQuery(datoExtra);
+                    if(rS2.next()){
+                        elementosReporte[1] = rS2.getString(1);
+                    }
+                    elementosReporte[2] = rS.getString(2);
                     modeloReporte.addRow(elementosReporte);
                 }
                 break;
             case 5:
                 modeloReporte.addColumn("Cui");
-                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Nombre");//agregar
                 modeloReporte.addColumn("Cantidad de ventas");
                 instruccionSql="SELECT distinct cui,COUNT(*) FROM ControlVenta.Factura GROUP BY cui ORDER BY count DESC LIMIT 3;";
                 rS = sT.executeQuery(instruccionSql);
                 elementosReporte = new String[3];
                 while (rS.next()) {
                     elementosReporte[0] = rS.getString(1);
-                    elementosReporte[1] = rS.getString(2);
+                    datoExtra="SELECT nombre FROM ControlPersona.Empleado WHERE cui='"+rS.getString(1)+"';";
+                    rS2=sT2.executeQuery(datoExtra);
+                    if(rS2.next()){
+                        elementosReporte[1] = rS2.getString(1);
+                    }
+                    elementosReporte[2] = rS.getString(2);
                     modeloReporte.addRow(elementosReporte);
                 }
                 break;
                 
             case 6:
                 modeloReporte.addColumn("Cui");
-                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Nombre");//agregar
                 modeloReporte.addColumn("Cantidad de ingresos");
                 instruccionSql="SELECT distinct cui,sum(total_venta) FROM ControlVenta.Factura GROUP BY cui ORDER BY sum DESC LIMIT 3;";
                 rS = sT.executeQuery(instruccionSql);
                 elementosReporte = new String[3];
                 while (rS.next()) {
                     elementosReporte[0] = rS.getString(1);
-                    elementosReporte[1] = rS.getString(2);
+                    datoExtra="SELECT nombre FROM ControlPersona.Empleado WHERE cui='"+rS.getString(1)+"';";
+                    rS2=sT2.executeQuery(datoExtra);
+                    if(rS2.next()){
+                        elementosReporte[1] = rS2.getString(1);
+                    }
+                    elementosReporte[2] = rS.getString(2);
                     modeloReporte.addRow(elementosReporte);
                 }
                 break;
                 
             case 7:
                 modeloReporte.addColumn("Codigo");
-                //modeloReporte.addColumn("Nombre");//agregar
+                modeloReporte.addColumn("Nombre");//agregar
                 modeloReporte.addColumn("Cantidad de ingresos");
                 instruccionSql="SELECT distinct codigo_producto,sum(total_producto_factura) FROM ControlVenta.Producto_Factura GROUP BY codigo_producto ORDER BY sum DESC LIMIT 10;";
                 rS = sT.executeQuery(instruccionSql);
                 elementosReporte = new String[3];
                 while (rS.next()) {
                     elementosReporte[0] = rS.getString(1);
-                    elementosReporte[1] = rS.getString(2);
+                    datoExtra="SELECT nombre FROM ControlAdministrativo.Producto WHERE codigo_producto='"+rS.getString(1)+"';";
+                    rS2=sT2.executeQuery(datoExtra);
+                    if(rS2.next()){
+                        elementosReporte[1] = rS2.getString(1);
+                    }
+                    elementosReporte[2] = rS.getString(2);
                     modeloReporte.addRow(elementosReporte);
                 }
                 break;
@@ -274,7 +313,7 @@ public class AccionesAdministradorBD {
                 modeloReporte.addColumn("Codigo");//agregar
                 modeloReporte.addColumn("Cantidad vendidos");
                 instruccionSql="SELECT id_sucursal FROM ControlAdministrativo.Sucursal WHERE nombre='"+sucursal.getSelectedItem().toString()+"';";
-                rS1 = sT.executeQuery(instruccionSql);
+                rS1 = sT1.executeQuery(instruccionSql);
                 if (rS1.next()) {
                     instruccionSql2 = "SELECT id_sucursal, codigo_producto,sum(cantidad_compra) FROM ControlVenta.Producto_Factura WHERE id_sucursal=" + rS1.getString(1) + " GROUP BY id_sucursal, codigo_producto ORDER BY sum DESC LIMIT 5;";
                     rS = sT.executeQuery(instruccionSql2);
@@ -292,7 +331,7 @@ public class AccionesAdministradorBD {
                 modeloReporte.addColumn("Codigo");//agregar
                 modeloReporte.addColumn("Cantidad ingresos");
                 instruccionSql="SELECT id_sucursal FROM ControlAdministrativo.Sucursal WHERE nombre='"+sucursal.getSelectedItem().toString()+"';";
-                rS1 = sT.executeQuery(instruccionSql);
+                rS1 = sT1.executeQuery(instruccionSql);
                 if (rS1.next()) {
                     instruccionSql2 = "SELECT id_sucursal, codigo_producto,sum(total_producto_factura) FROM ControlVenta.Producto_Factura WHERE id_sucursal=" + rS1.getString(1) + " GROUP BY id_sucursal, codigo_producto ORDER BY sum DESC LIMIT 5;";
                     rS = sT.executeQuery(instruccionSql2);

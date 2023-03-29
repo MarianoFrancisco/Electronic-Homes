@@ -64,6 +64,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         textSucursal = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -71,7 +72,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/5.png"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, 40));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, -1, 40));
 
         regresarOrden.setBackground(new java.awt.Color(255, 0, 0));
         regresarOrden.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
@@ -104,7 +105,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(top5);
 
-        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 870, 200));
+        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 870, 100));
 
         productoMasIngresoSucursal.setBackground(new java.awt.Color(255, 255, 51));
         productoMasIngresoSucursal.setForeground(new java.awt.Color(0, 0, 0));
@@ -114,7 +115,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 productoMasIngresoSucursalActionPerformed(evt);
             }
         });
-        getContentPane().add(productoMasIngresoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 350, -1, -1));
+        getContentPane().add(productoMasIngresoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, -1, -1));
 
         productoMasIngreso.setBackground(new java.awt.Color(255, 255, 51));
         productoMasIngreso.setForeground(new java.awt.Color(0, 0, 0));
@@ -124,7 +125,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 productoMasIngresoActionPerformed(evt);
             }
         });
-        getContentPane().add(productoMasIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, -1, -1));
+        getContentPane().add(productoMasIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, -1, -1));
 
         clienteMasGanancia.setBackground(new java.awt.Color(255, 255, 51));
         clienteMasGanancia.setForeground(new java.awt.Color(0, 0, 0));
@@ -134,7 +135,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 clienteMasGananciaActionPerformed(evt);
             }
         });
-        getContentPane().add(clienteMasGanancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
+        getContentPane().add(clienteMasGanancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
 
         productoMasVendido.setBackground(new java.awt.Color(255, 255, 51));
         productoMasVendido.setForeground(new java.awt.Color(0, 0, 0));
@@ -144,7 +145,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 productoMasVendidoActionPerformed(evt);
             }
         });
-        getContentPane().add(productoMasVendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
+        getContentPane().add(productoMasVendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
 
         sucursalMasVenta.setBackground(new java.awt.Color(255, 255, 51));
         sucursalMasVenta.setForeground(new java.awt.Color(0, 0, 0));
@@ -194,7 +195,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 productoMasVenididoSucursalActionPerformed(evt);
             }
         });
-        getContentPane().add(productoMasVenididoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, -1, -1));
+        getContentPane().add(productoMasVenididoSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, -1, -1));
 
         top10.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -215,7 +216,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(top10);
 
-        getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 870, 220));
+        getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 870, 180));
 
         top3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -229,7 +230,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         ));
         jScrollPane7.setViewportView(top3);
 
-        getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 640, 870, 90));
+        getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 650, 870, 70));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Logo.PNG"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 740, -1, 40));
@@ -238,17 +239,21 @@ public class Administrador_Reportes extends javax.swing.JFrame {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 40));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Top.png"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, 40));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, 40));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3.png"))); // NOI18N
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 670, -1, 40));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 660, -1, 40));
 
-        getContentPane().add(textSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 250, -1));
+        getContentPane().add(textSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 250, -1));
 
+        jLabel1.setBackground(new java.awt.Color(0, 255, 0));
         jLabel1.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("SUCURSAL");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ReportesFondo.jpg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 120, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -346,6 +351,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
