@@ -1,0 +1,17 @@
+/*Eliminar usuario*/
+REVOKE ALL ON DATABASE electronic_homes FROM electronic;
+\c electronic_homes;
+--
+REVOKE ALL ON SCHEMA ControlAdministrativo,ControlPersona,ControlVenta FROM electronic;
+--
+REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA ControlAdministrativo,ControlPersona,ControlVenta FROM electronic;
+--
+REVOKE ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA ControlAdministrativo,ControlPersona,ControlVenta FROM electronic;
+--
+\q
+psql -U postgres postgres
+--contraseña y luego ingresar
+DROP USER electronic;
+
+/*Eliminar base de datos*/
+DROP DATABASE electronic_homes;

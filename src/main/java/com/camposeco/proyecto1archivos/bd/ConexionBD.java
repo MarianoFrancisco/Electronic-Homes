@@ -5,7 +5,6 @@
  */
 package com.camposeco.proyecto1archivos.bd;
 import com.camposeco.proyecto1archivos.Encriptacion;
-import com.camposeco.proyecto1archivos.frame.vendedor.Vendedor;
 import java.sql.*;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -39,6 +38,9 @@ public class ConexionBD{
             return false;
         }
     }
+    public static void cerrarConexion() throws SQLException{
+        conexionBD.close();
+    }
     //roles
     public static int verificarLogin(JTextField usuario,JTextField password){
         return ManejoEncriptacionBD.encriptarPassword(conexionBD,sT,rS, usuario,password);
@@ -46,6 +48,9 @@ public class ConexionBD{
     //Vendedor
     public static void listarClientes(JTable tablaClientes) throws SQLException{
         AccionesVendedorBD.verClientes(conexionBD,sT,rS, tablaClientes);
+    }
+    public static void listarProductosFactura(JTable tablaProductosFactura) throws SQLException{
+        AccionesVendedorBD.verProductosFactura(conexionBD,sT,rS, tablaProductosFactura);
     }
     public static void modificarCliente(JLabel nit, JTextField nombre,JTextField telefono,JTextField totalGasto,JTextField ultimoGasto) throws SQLException{
         AccionesVendedorBD.modificarCliente(conexionBD, rS, pST, nit,nombre,telefono,totalGasto,ultimoGasto);

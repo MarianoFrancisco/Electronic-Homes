@@ -15,7 +15,6 @@ import com.camposeco.proyecto1archivos.controladores.Empleado;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,7 +29,7 @@ public class Start extends javax.swing.JFrame {
     public static Empleado empleado=new Empleado();
     Fondo inicio = new Fondo();//Creamos un nuevo fondo
     public Start() {
-        inicio.obtenerDireccion("/images/FondoOscuro.jpg");
+        inicio.obtenerDireccion("/images/fondoOscuro.jpg");
         this.setContentPane(inicio);//Realizamos la pintada de nuestro fondo
         initComponents();
         this.setLocationRelativeTo(null);//Centramos nuestro frame
@@ -112,7 +111,12 @@ public class Start extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
-        this.dispose();
+        try {
+            ConexionBD.cerrarConexion();
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_salirButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed

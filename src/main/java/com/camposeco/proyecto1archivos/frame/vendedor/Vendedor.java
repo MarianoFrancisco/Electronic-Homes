@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -74,6 +75,8 @@ public class Vendedor extends javax.swing.JFrame {
         textCodigo = new javax.swing.JLabel();
         NIT = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaProductosVenta = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -112,7 +115,7 @@ public class Vendedor extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaSucursal);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 510, 610));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 510, 360));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/textSucursal.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, 60));
@@ -179,7 +182,7 @@ public class Vendedor extends javax.swing.JFrame {
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 240, -1, -1));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/agregarProducto.png"))); // NOI18N
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, -1, -1));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 550, -1, -1));
 
         textNitVenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -261,6 +264,18 @@ public class Vendedor extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ReportesFondo.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 600, 450, 130));
+
+        tablaProductosVenta.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "EMPIEZA UNA VENTA"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaProductosVenta);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 510, 160));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -394,6 +409,9 @@ public class Vendedor extends javax.swing.JFrame {
         }else{
             try {
                 ConexionBD.finalizarVenta();
+                DefaultTableModel modeloProductosFactura = new DefaultTableModel();
+                modeloProductosFactura.addColumn("EMPIEZA UNA VENTA");
+                tablaProductosVenta.setModel(modeloProductosFactura);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "No se pudo finalizar la venta");
             }
@@ -409,6 +427,7 @@ public class Vendedor extends javax.swing.JFrame {
             try {
                 ConexionBD.agregarProductoVenta(textCodigo, textCantidad);
                 ConexionBD.listarProductoSucursal(tablaSucursal);
+                ConexionBD.listarProductosFactura(tablaProductosVenta);
             } catch (SQLException ex) {
                 JOptionPane.showConfirmDialog(null, "Error al agregar producto");
             }
@@ -446,7 +465,9 @@ public class Vendedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton regresarOrden;
+    private javax.swing.JTable tablaProductosVenta;
     private javax.swing.JTable tablaSucursal;
     private javax.swing.JTextField textCantidad;
     private javax.swing.JLabel textCodigo;

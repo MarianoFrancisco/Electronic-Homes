@@ -41,6 +41,7 @@ com\camposeco\proyecto1archivos\bd\AccionesVendedorBD.class
 com\camposeco\proyecto1archivos\bd\ManejoEncriptacionBD.class
 com\camposeco\proyecto1archivos\frame\Start$6.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor_Clientes$1.class
+com\camposeco\proyecto1archivos\bd\AccionesVendedorBD$2.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$13.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$1.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador_Reportes$5.class

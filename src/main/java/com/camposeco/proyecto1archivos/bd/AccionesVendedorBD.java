@@ -50,6 +50,29 @@ public class AccionesVendedorBD {
         }
         tablaClientes.setModel(modeloClientes);
     }
+    public static void verProductosFactura(Connection cnBD,Statement sT,ResultSet rS,JTable tablaClientes) throws SQLException{
+        DefaultTableModel modeloProductosFactura = new DefaultTableModel() {
+            //True para hacer celdas editables, como no queremos eso, false
+            @Override public boolean isCellEditable(int row, int column) 
+            {
+                return false; 
+            } 
+        };
+        modeloProductosFactura.addColumn("Codigo");
+        modeloProductosFactura.addColumn("Cantidad");
+        modeloProductosFactura.addColumn("Total Gasto");
+        String instruccionSql="SELECT * FROM ControlVenta.Producto_Factura WHERE id_venta="+Vendedor.valorVenta+";";
+        String[] elementosClientes = new String[3];
+        sT = cnBD.createStatement();
+        rS = sT.executeQuery(instruccionSql);
+        while (rS.next()) {
+            elementosClientes[0] = rS.getString(3);
+            elementosClientes[1] = rS.getString(4);
+            elementosClientes[2] = rS.getString(5);
+            modeloProductosFactura.addRow(elementosClientes);
+        }
+        tablaClientes.setModel(modeloProductosFactura);
+    }
     public static void modificarCliente(Connection cnBD, ResultSet rS, PreparedStatement pST, JLabel nit, JTextField nombre, JTextField telefono, JTextField totalGasto, JTextField ultimoGasto) {
         try {
             pST = cnBD.prepareStatement("UPDATE ControlPersona.Cliente SET nombre=?,telefono=?,total_gasto=?,ultima_compra=? WHERE nit=?");
