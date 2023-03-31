@@ -11,8 +11,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -21,11 +19,11 @@ import javax.swing.JTextField;
  * @author Mariano
  */
 public class ManejoEncriptacionBD {
-    public static int encriptarPassword(Connection cnBD,Statement sT,ResultSet rS,JTextField usuario,JTextField password){
+    public static int encriptarPassword(Connection cnBD,Statement sT,ResultSet rS,String usuario,String password){
         int id_rol = 0;
         try {
-            String passwordDesencriptada=manejoEncriptaciones.encriptarPassword(password.getText());
-            String instruccionSql="SELECT * FROM ControlPersona.Empleado WHERE usuario='"+usuario.getText()+"' AND password_empleado='"+passwordDesencriptada+"'";
+            String passwordDesencriptada=manejoEncriptaciones.encriptarPassword(password);
+            String instruccionSql="SELECT * FROM ControlPersona.Empleado WHERE usuario='"+usuario+"' AND password_empleado='"+passwordDesencriptada+"'";
             sT = cnBD.createStatement();
             rS = sT.executeQuery(instruccionSql);
             if(rS.next()){

@@ -42,7 +42,7 @@ public class ConexionBD{
         conexionBD.close();
     }
     //roles
-    public static int verificarLogin(JTextField usuario,JTextField password){
+    public static int verificarLogin(String usuario,String password){
         return ManejoEncriptacionBD.encriptarPassword(conexionBD,sT,rS, usuario,password);
     }
     //Vendedor

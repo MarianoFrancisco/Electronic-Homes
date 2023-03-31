@@ -2,7 +2,6 @@ com\camposeco\proyecto1archivos\frame\bodega\Bodega$1.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$19.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$14.class
 com\camposeco\proyecto1archivos\frame\inventario\Inventario$6.class
-com\camposeco\proyecto1archivos\frame\Start$5.class
 com\camposeco\proyecto1archivos\frame\inventario\Inventario$3.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$7.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor_Clientes$3.class
@@ -24,9 +23,11 @@ com\camposeco\proyecto1archivos\frame\administrador\Administrador$9.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$11.class
 com\camposeco\proyecto1archivos\frame\Start$2.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$14.class
+com\camposeco\proyecto1archivos\frame\Llamados$2.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$12.class
 com\camposeco\proyecto1archivos\frame\bodega\Bodega$6.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor_Clientes$8.class
+com\camposeco\proyecto1archivos\frame\Llamados.class
 com\camposeco\proyecto1archivos\bd\AccionesVendedorBD$1.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador_Reportes$6.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$2.class
@@ -39,7 +40,6 @@ com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$8.class
 com\camposeco\proyecto1archivos\frame\Start.class
 com\camposeco\proyecto1archivos\bd\AccionesVendedorBD.class
 com\camposeco\proyecto1archivos\bd\ManejoEncriptacionBD.class
-com\camposeco\proyecto1archivos\frame\Start$6.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor_Clientes$1.class
 com\camposeco\proyecto1archivos\bd\AccionesVendedorBD$2.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$13.class
@@ -49,9 +49,9 @@ com\camposeco\proyecto1archivos\frame\administrador\Administrador$1.class
 com\camposeco\proyecto1archivos\frame\bodega\Bodega$7.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$13.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador$13.class
-com\camposeco\proyecto1archivos\frame\Start$7.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador$7.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor_Clientes$2.class
+com\camposeco\proyecto1archivos\frame\Llamados$3.class
 com\camposeco\proyecto1archivos\Restricciones.class
 com\camposeco\proyecto1archivos\Main.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$12.class
@@ -59,6 +59,7 @@ com\camposeco\proyecto1archivos\frame\administrador\Administrador$5.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador_Reportes$4.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador.class
 com\camposeco\proyecto1archivos\frame\bodega\Bodega$8.class
+com\camposeco\proyecto1archivos\frame\Llamados$4.class
 com\camposeco\proyecto1archivos\Main$1.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$3.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$10.class
@@ -70,6 +71,7 @@ com\camposeco\proyecto1archivos\frame\bodega\Bodega.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$6.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$18.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor_Clientes$4.class
+com\camposeco\proyecto1archivos\frame\Llamados$1.class
 com\camposeco\proyecto1archivos\bd\AccionesInventarioBD.class
 com\camposeco\proyecto1archivos\frame\inventario\Inventario$2.class
 com\camposeco\proyecto1archivos\frame\bodega\Bodega$2.class
@@ -103,14 +105,12 @@ com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$5.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$10.class
 com\camposeco\proyecto1archivos\bd\AccionesAdministradorBD$1.class
 com\camposeco\proyecto1archivos\frame\bodega\Bodega$9.class
-com\camposeco\proyecto1archivos\controladores\Producto_Bodega.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$7.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador_Reportes$3.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor_Clientes.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador_Reportes$11.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$16.class
 com\camposeco\proyecto1archivos\frame\inventario\Inventario$7.class
-com\camposeco\proyecto1archivos\frame\Start$4.class
 com\camposeco\proyecto1archivos\bd\AccionesAdministradorBD$2.class
 com\camposeco\proyecto1archivos\frame\bodega\Bodega$3.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador$4.class

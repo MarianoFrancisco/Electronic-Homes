@@ -7,10 +7,6 @@ package com.camposeco.proyecto1archivos.frame;
 
 import com.camposeco.proyecto1archivos.bd.ConexionBD;
 import com.camposeco.proyecto1archivos.Fondo;
-import com.camposeco.proyecto1archivos.frame.bodega.Bodega;
-import com.camposeco.proyecto1archivos.frame.administrador.Administrador;
-import com.camposeco.proyecto1archivos.frame.inventario.Inventario;
-import com.camposeco.proyecto1archivos.frame.vendedor.Vendedor;
 import com.camposeco.proyecto1archivos.controladores.Empleado;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -112,6 +108,7 @@ public class Start extends javax.swing.JFrame {
 
     private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
         try {
+            //finalizamos conexion y finalizamos
             ConexionBD.cerrarConexion();
             this.dispose();
         } catch (SQLException ex) {
@@ -120,58 +117,26 @@ public class Start extends javax.swing.JFrame {
     }//GEN-LAST:event_salirButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        switch (ConexionBD.verificarLogin(textUser, textPassword)) {
+        //pasamos a string los datos de jtextfield
+        String usuario=textUser.getText();
+        String password=textPassword.getText();
+        //hacemos llamados a las pantallas segun su rol
+        switch (ConexionBD.verificarLogin(usuario, password)) {
             case 1:
                 this.dispose();
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        try {
-                            //iniciamos frame inicio
-                            new Vendedor().setVisible(true);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                });
+                Llamados.llamarVendedor();
                 break;
             case 2:
                 this.dispose();
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        try {
-                            //iniciamos frame inicio
-                            new Inventario().setVisible(true);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                });
+                Llamados.llamarInventario();
                 break;
             case 3:
                 this.dispose();
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        try {
-                            //iniciamos frame inicio
-                            new Bodega().setVisible(true);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                });
+                Llamados.llamarBodega();
                 break;
             case 4:
                 this.dispose();
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        try {
-                            //iniciamos frame inicio
-                            new Administrador().setVisible(true);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                });
+                Llamados.llamarAdministrador();
                 break;
             default:
                 JOptionPane.showMessageDialog(null,"Usuario y password ingresados no coinciden, por favor verificar");
