@@ -10,6 +10,7 @@ import com.camposeco.proyecto1archivos.frame.bodega.Bodega;
 import com.camposeco.proyecto1archivos.frame.bodega.Producto_Bodega;
 import com.camposeco.proyecto1archivos.frame.inventario.Inventario;
 import com.camposeco.proyecto1archivos.frame.vendedor.Vendedor;
+import com.camposeco.proyecto1archivos.frame.vendedor.Vendedor_Clientes;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +40,18 @@ public class Llamados {
             }
         });
     }
-
+    public static void llamarVendedorClientes(){
+        java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        //iniciamos frame inicio
+                        new Vendedor_Clientes().setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+    }
     public static void llamarInventario() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -47,4 +47,11 @@ public class Restricciones {
             JOptionPane.showMessageDialog(null, "El codigo de producto solo tiene 4 caracteres");//Mensaje condicional digitos codigo
         }
     }
+    public static void restringirNit(java.awt.event.KeyEvent evt,String nit){
+        if(nit.length()>8){//restringimos que no puede escribir mas de 13 digitos
+            evt.consume();//el evento no permite seguir escribiendo
+            Toolkit.getDefaultToolkit().beep();//sonido de error
+            JOptionPane.showMessageDialog(null, "El nit unicamente tiene 9 digitos");//Mensaje condicional digitos nit
+        }
+    }
 }

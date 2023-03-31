@@ -6,6 +6,7 @@
 package com.camposeco.proyecto1archivos.frame.inventario;
 
 import com.camposeco.proyecto1archivos.Fondo;
+import com.camposeco.proyecto1archivos.Restricciones;
 import com.camposeco.proyecto1archivos.bd.ConexionBD;
 import com.camposeco.proyecto1archivos.frame.Start;
 import java.awt.Toolkit;
@@ -259,21 +260,11 @@ public class Inventario extends javax.swing.JFrame {
     }//GEN-LAST:event_regresarOrdenActionPerformed
 
     private void textCantidadIngresarSucursalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCantidadIngresarSucursalKeyTyped
-        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
-        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
-        }
+        Restricciones.restringirLetras(evt);
     }//GEN-LAST:event_textCantidadIngresarSucursalKeyTyped
 
     private void textCantidadIngresarBodegaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCantidadIngresarBodegaKeyTyped
-        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
-        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
-        }
+        Restricciones.restringirLetras(evt);
     }//GEN-LAST:event_textCantidadIngresarBodegaKeyTyped
 
     private void tablaSolicitudesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaSolicitudesMouseClicked
@@ -299,10 +290,14 @@ public class Inventario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor llena la ubicacion y la cantidad");
         }else{
             try {
-                ConexionBD.ingresoSucursal(textIngresarSucursal, textCodigoIngresarSucursal, textUbicacionIngresarSucursal, textCantidadIngresarSucursal);
-                ConexionBD.listarProductoSucursal(tablaSucursal);
+                if (Restricciones.verificarCantidad(textCantidadIngresarSucursal.getText())) {
+                    ConexionBD.ingresoSucursal(textIngresarSucursal, textCodigoIngresarSucursal, textUbicacionIngresarSucursal, textCantidadIngresarSucursal);
+                    ConexionBD.listarProductoSucursal(tablaSucursal);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingreso un numero entero en la cantidad");
+                }
             } catch (SQLException ex) {
-                JOptionPane.showConfirmDialog(null, "Error"+ex);
+                JOptionPane.showMessageDialog(null, "Error"+ex);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -312,10 +307,14 @@ public class Inventario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor llena la ubicacion y la cantidad");
         }else{
             try {
-                ConexionBD.ingresoBodega(textIngresarBodega, textCodigoIngresarBodega, textUbicacionIngresarBodega, textCantidadIngresarBodega);
-                ConexionBD.listarProductoSucursal(tablaSucursal);
+                if (Restricciones.verificarCantidad(textCantidadIngresarBodega.getText())) {
+                    ConexionBD.ingresoBodega(textIngresarBodega, textCodigoIngresarBodega, textUbicacionIngresarBodega, textCantidadIngresarBodega);
+                    ConexionBD.listarProductoSucursal(tablaSucursal);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Ingreso un numero entero en la cantidad");
+                }
             } catch (SQLException ex) {
-                JOptionPane.showConfirmDialog(null, "Error"+ex);
+                JOptionPane.showMessageDialog(null, "Error"+ex);
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed

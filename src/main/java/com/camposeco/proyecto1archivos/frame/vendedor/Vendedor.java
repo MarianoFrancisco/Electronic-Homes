@@ -8,6 +8,7 @@ package com.camposeco.proyecto1archivos.frame.vendedor;
 import com.camposeco.proyecto1archivos.Fondo;
 import com.camposeco.proyecto1archivos.Restricciones;
 import com.camposeco.proyecto1archivos.bd.ConexionBD;
+import com.camposeco.proyecto1archivos.frame.Llamados;
 import com.camposeco.proyecto1archivos.frame.Start;
 import java.awt.Toolkit;
 import java.sql.SQLException;
@@ -298,16 +299,7 @@ public class Vendedor extends javax.swing.JFrame {
     private void clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesActionPerformed
         if (valorVenta == 0) {
             this.dispose();
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    try {
-                        //iniciamos frame inicio
-                        new Vendedor_Clientes().setVisible(true);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            });
+            Llamados.llamarVendedorClientes();
         }else{
             JOptionPane.showMessageDialog(null, "Tiene una venta en proceso, finalicela antes de ir al apartado de clientes");
         }
@@ -323,26 +315,12 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaSucursalMouseClicked
 
     private void textNitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNitKeyTyped
-        if(textNit.getText().length()>8){//restringimos que no puede escribir mas de 13 digitos
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "El nit unicamente tiene 9 digitos");//Mensaje condicional digitos nit
-        }
-        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
-        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
-        }
+        Restricciones.restringirNit(evt, textNit.getText());
+        Restricciones.restringirLetras(evt);
     }//GEN-LAST:event_textNitKeyTyped
 
     private void textTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textTelefonoKeyTyped
-        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
-        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
-        }
+        Restricciones.restringirLetras(evt);
     }//GEN-LAST:event_textTelefonoKeyTyped
 
     private void textNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNombreKeyTyped
@@ -370,17 +348,8 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresarClienteActionPerformed
 
     private void textNitVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNitVentaKeyTyped
-        if(textNitVenta.getText().length()>8){//restringimos que no puede escribir mas de 13 digitos
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "El nit unicamente tiene 9 digitos");//Mensaje condicional digitos nit
-        }
-        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
-        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
-        }
+        Restricciones.restringirNit(evt, textNitVenta.getText());
+        Restricciones.restringirLetras(evt);
     }//GEN-LAST:event_textNitVentaKeyTyped
 
     private void empezarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empezarVentaActionPerformed
@@ -435,12 +404,7 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarProductoActionPerformed
 
     private void textCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCantidadKeyTyped
-        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
-        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
-        }
+        Restricciones.restringirLetras(evt);
     }//GEN-LAST:event_textCantidadKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
