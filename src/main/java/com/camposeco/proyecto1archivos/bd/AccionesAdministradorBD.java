@@ -309,7 +309,8 @@ public class AccionesAdministradorBD {
                 }
                 break;
             case 8:
-                modeloReporte.addColumn("Sucursal");
+                modeloReporte.addColumn("ID sucursal");
+                modeloReporte.addColumn("Nombre Sucursal");//agregar
                 modeloReporte.addColumn("Codigo");//agregar
                 modeloReporte.addColumn("Cantidad vendidos");
                 instruccionSql="SELECT id_sucursal FROM ControlAdministrativo.Sucursal WHERE nombre='"+sucursal.getSelectedItem().toString()+"';";
@@ -317,17 +318,19 @@ public class AccionesAdministradorBD {
                 if (rS1.next()) {
                     instruccionSql2 = "SELECT id_sucursal, codigo_producto,sum(cantidad_compra) FROM ControlVenta.Producto_Factura WHERE id_sucursal=" + rS1.getString(1) + " GROUP BY id_sucursal, codigo_producto ORDER BY sum DESC LIMIT 5;";
                     rS = sT.executeQuery(instruccionSql2);
-                    elementosReporte = new String[3];
+                    elementosReporte = new String[4];
                     while (rS.next()) {
                         elementosReporte[0] = rS.getString(1);
-                        elementosReporte[1] = rS.getString(2);
-                        elementosReporte[2] = rS.getString(3);
+                        elementosReporte[1] = sucursal.getSelectedItem().toString();
+                        elementosReporte[2] = rS.getString(2);
+                        elementosReporte[3] = rS.getString(3);
                         modeloReporte.addRow(elementosReporte);
                     }
                 }
                 break;
             case 9:
-                modeloReporte.addColumn("Sucursal");
+                modeloReporte.addColumn("ID sucursal");
+                modeloReporte.addColumn("Nombre Sucursal");//agregar
                 modeloReporte.addColumn("Codigo");//agregar
                 modeloReporte.addColumn("Cantidad ingresos");
                 instruccionSql="SELECT id_sucursal FROM ControlAdministrativo.Sucursal WHERE nombre='"+sucursal.getSelectedItem().toString()+"';";
@@ -335,11 +338,12 @@ public class AccionesAdministradorBD {
                 if (rS1.next()) {
                     instruccionSql2 = "SELECT id_sucursal, codigo_producto,sum(total_producto_factura) FROM ControlVenta.Producto_Factura WHERE id_sucursal=" + rS1.getString(1) + " GROUP BY id_sucursal, codigo_producto ORDER BY sum DESC LIMIT 5;";
                     rS = sT.executeQuery(instruccionSql2);
-                    elementosReporte = new String[3];
+                    elementosReporte = new String[4];
                     while (rS.next()) {
                         elementosReporte[0] = rS.getString(1);
-                        elementosReporte[1] = rS.getString(2);
-                        elementosReporte[2] = rS.getString(3);
+                        elementosReporte[1] = sucursal.getSelectedItem().toString();
+                        elementosReporte[2] = rS.getString(2);
+                        elementosReporte[3] = rS.getString(3);
                         modeloReporte.addRow(elementosReporte);
                     }
                 }

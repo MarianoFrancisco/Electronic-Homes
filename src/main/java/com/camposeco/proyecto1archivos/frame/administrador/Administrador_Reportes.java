@@ -155,7 +155,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 sucursalMasVentaActionPerformed(evt);
             }
         });
-        getContentPane().add(sucursalMasVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 600, -1, -1));
+        getContentPane().add(sucursalMasVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 600, -1, -1));
 
         sucursalMasIngreso.setBackground(new java.awt.Color(255, 255, 51));
         sucursalMasIngreso.setForeground(new java.awt.Color(0, 0, 0));
@@ -165,7 +165,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 sucursalMasIngresoActionPerformed(evt);
             }
         });
-        getContentPane().add(sucursalMasIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 600, -1, -1));
+        getContentPane().add(sucursalMasIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 600, -1, -1));
 
         empleadoMasVenta.setBackground(new java.awt.Color(255, 255, 51));
         empleadoMasVenta.setForeground(new java.awt.Color(0, 0, 0));
@@ -175,7 +175,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 empleadoMasVentaActionPerformed(evt);
             }
         });
-        getContentPane().add(empleadoMasVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 600, -1, -1));
+        getContentPane().add(empleadoMasVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 600, -1, -1));
 
         empleadoMasIngreso.setBackground(new java.awt.Color(255, 255, 51));
         empleadoMasIngreso.setForeground(new java.awt.Color(0, 0, 0));
@@ -185,7 +185,7 @@ public class Administrador_Reportes extends javax.swing.JFrame {
                 empleadoMasIngresoActionPerformed(evt);
             }
         });
-        getContentPane().add(empleadoMasIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 600, -1, -1));
+        getContentPane().add(empleadoMasIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 600, -1, -1));
 
         productoMasVenididoSucursal.setBackground(new java.awt.Color(255, 255, 51));
         productoMasVenididoSucursal.setForeground(new java.awt.Color(0, 0, 0));
