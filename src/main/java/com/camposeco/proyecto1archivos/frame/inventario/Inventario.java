@@ -26,7 +26,7 @@ public class Inventario extends javax.swing.JFrame {
      */
     Fondo inicio = new Fondo();//Creamos un nuevo fondo
     public Inventario() throws SQLException {
-        inicio.obtenerDireccion("/images/inventario.PNG");
+        inicio.obtenerDireccion("/images/inventario.png");
         this.setContentPane(inicio);//Realizamos la pintada de nuestro fondo
         initComponents();
         ConexionBD.listarProductos(tablaSolicitudes);

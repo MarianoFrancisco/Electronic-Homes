@@ -107,7 +107,7 @@ public class AccionesInventarioBD {
                     } else {
                         //suma
                         pST = cnBD.prepareStatement("INSERT INTO ControlAdministrativo.Producto_Sucursal VALUES(?,?,?,?);");
-                        pST.setInt(1, empleado.getId_rol());
+                        pST.setInt(1, empleado.getId_sucursal());
                         pST.setString(2, codigo.getText());
                         pST.setString(3, ubicacion.getText());
                         pST.setInt(4, Integer.parseInt(cantidad.getText()));
@@ -146,10 +146,10 @@ public class AccionesInventarioBD {
                                 //suma
                                 pST.setString(1, ubicacion.getText());
                                 pST.setInt(2, operacion);
-                                pST.setInt(3, empleado.getId_rol());
+                                pST.setInt(3, empleado.getId_sucursal());
                                 pST.setString(4, codigo.getText());
                                 pST.execute();
-                                JOptionPane.showMessageDialog(null, "Aumentado stock de " + codigo.getText() + " de sucursal " + sucursalID + " a " + empleado.getId_rol());
+                                JOptionPane.showMessageDialog(null, "Aumentado stock de " + codigo.getText() + " de sucursal " + sucursalID + " a " + empleado.getId_sucursal());
                             }
                         }
                     }
@@ -209,7 +209,7 @@ public class AccionesInventarioBD {
                 } else {
                     //suma
                     pST = cnBD.prepareStatement("INSERT INTO ControlAdministrativo.Producto_Sucursal VALUES(?,?,?,?);");
-                    pST.setInt(1, empleado.getId_rol());
+                    pST.setInt(1, empleado.getId_sucursal());
                     pST.setString(2, codigo.getText());
                     pST.setString(3, ubicacion.getText());
                     pST.setInt(4, Integer.parseInt(cantidad.getText()));
@@ -222,7 +222,7 @@ public class AccionesInventarioBD {
                     pST2.setInt(2, bodegaID);
                     pST2.setString(3, codigo.getText());
                     pST2.execute();
-                    JOptionPane.showMessageDialog(null, "Agregado stock de " + codigo.getText() + " de bodega " + bodegaID + " a " + empleado.getId_rol());
+                    JOptionPane.showMessageDialog(null, "Agregado stock de " + codigo.getText() + " de bodega " + bodegaID + " a sucursal " + empleado.getId_sucursal());
                 }
             } else {//existe producto pero ya solo se modifica cantidad
                 String instruccionSql2 = "SELECT cantidad_bodega FROM ControlAdministrativo.Producto_Bodega WHERE id_bodega=" + bodegaID + " AND codigo_producto='" + codigo.getText() + "';";
@@ -248,10 +248,10 @@ public class AccionesInventarioBD {
                             //suma
                             pST.setString(1, ubicacion.getText());
                             pST.setInt(2, operacion);
-                            pST.setInt(3, empleado.getId_rol());
+                            pST.setInt(3, empleado.getId_sucursal());
                             pST.setString(4, codigo.getText());
                             pST.execute();
-                            JOptionPane.showMessageDialog(null, "Aumentado stock de " + codigo.getText() + " de bodega " + bodegaID + " a " + empleado.getId_rol());
+                            JOptionPane.showMessageDialog(null, "Aumentado stock de " + codigo.getText() + " de bodega " + bodegaID + " a sucursal" + empleado.getId_sucursal());
                         }
                     }
                 }
