@@ -26,7 +26,7 @@ public class Producto_Bodega extends javax.swing.JFrame {
      */
     Fondo inicio = new Fondo();//Creamos un nuevo fondo
     public Producto_Bodega() throws SQLException {
-        inicio.obtenerDireccion("/images/Bodega.jpg");
+        inicio.obtenerDireccion("/images/bodega.jpg");
         this.setContentPane(inicio);//Realizamos la pintada de nuestro fondo
         initComponents();
         ConexionBD.listarProductos(tablaProductos);

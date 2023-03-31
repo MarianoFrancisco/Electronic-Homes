@@ -251,7 +251,7 @@ public class AccionesInventarioBD {
                             pST.setInt(3, empleado.getId_sucursal());
                             pST.setString(4, codigo.getText());
                             pST.execute();
-                            JOptionPane.showMessageDialog(null, "Aumentado stock de " + codigo.getText() + " de bodega " + bodegaID + " a sucursal" + empleado.getId_sucursal());
+                            JOptionPane.showMessageDialog(null, "Aumentado stock de " + codigo.getText() + " de bodega " + bodegaID + " a sucursal " + empleado.getId_sucursal());
                         }
                     }
                 }
