@@ -78,7 +78,7 @@ public class ConexionBD{
     public static void listarProductosBodega(JTable tablaProductosBodega) throws SQLException{
         AccionesBodegaBD.verProductosBodega(conexionBD,sT,rS, tablaProductosBodega);
     }
-    public static void editarProductosBodega(JLabel bodega,JLabel codigo,JTextField proveedor,JTextField ubicacion,JTextField cantidad) throws SQLException{
+    public static void editarProductosBodega(String bodega,String codigo,String proveedor,String ubicacion,int cantidad) throws SQLException{
         AccionesBodegaBD.modificarProductosBodega(conexionBD,sT,rS,pST,bodega,codigo,proveedor,ubicacion,cantidad);
     }
     public static void listarProductos(JTable tablaProductos) throws SQLException{

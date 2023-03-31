@@ -64,24 +64,27 @@ public class AccionesBodegaBD {
         }
         productosBodega.setModel(modeloProductoBodega);
     }
-    public static void modificarProductosBodega(Connection cnBD,Statement sT,ResultSet rS,PreparedStatement pST, JLabel bodega,JLabel codigo,JTextField proveedor,JTextField ubicacion,JTextField cantidad){
+    public static void modificarProductosBodega(Connection cnBD,Statement sT,ResultSet rS,PreparedStatement pST, String bodega,String codigo,String proveedor,String ubicacion,int cantidad){
         try {
-            String instruccionSql="SELECT id_bodega FROM ControlAdministrativo.Producto_Bodega WHERE codigo_producto='"+codigo.getText()+"'";
+            String instruccionSql="SELECT id_bodega FROM ControlAdministrativo.Bodega WHERE nombre='"+bodega+"'";
             pST=cnBD.prepareStatement("UPDATE ControlAdministrativo.Producto_Bodega SET proveedor=?,ubicacion=?,"
                     + "cantidad_bodega=? WHERE id_bodega=? AND codigo_producto=?");
             sT = cnBD.createStatement();
             rS = sT.executeQuery(instruccionSql);
-            pST.setString(1, proveedor.getText());
-            pST.setString(2, ubicacion.getText());
-            pST.setInt(3, Integer.parseInt(cantidad.getText()));
+            pST.setString(1, proveedor);
+            pST.setString(2, ubicacion);
+            pST.setInt(3, cantidad);
             if (rS.next()) {
                 pST.setInt(4,  Integer.parseInt(rS.getString(1)));
             }
-            pST.setString(5, codigo.getText());
+            pST.setString(5, codigo);
             pST.execute();
-            JOptionPane.showMessageDialog(null, "Producto en bodega modificado correctamente "+codigo.getText());
+            sT.close();
+            rS.close();
+            pST.close();
+            JOptionPane.showMessageDialog(null, "Producto en bodega modificado correctamente "+codigo);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al modificar el producto en bodega "+codigo.getText());
+            JOptionPane.showMessageDialog(null, "Error al modificar el producto en bodega "+codigo);
         }
     }
     public static void verProductos(Connection cnBD,Statement sT,ResultSet rS,JTable productos) throws SQLException{

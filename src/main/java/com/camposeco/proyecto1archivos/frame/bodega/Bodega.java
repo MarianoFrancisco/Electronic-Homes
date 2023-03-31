@@ -7,6 +7,8 @@ package com.camposeco.proyecto1archivos.frame.bodega;
 
 import com.camposeco.proyecto1archivos.bd.ConexionBD;
 import com.camposeco.proyecto1archivos.Fondo;
+import com.camposeco.proyecto1archivos.Restricciones;
+import com.camposeco.proyecto1archivos.frame.Llamados;
 import com.camposeco.proyecto1archivos.frame.Start;
 import java.awt.Toolkit;
 import java.sql.SQLException;
@@ -219,12 +221,7 @@ public class Bodega extends javax.swing.JFrame {
 
     private void regresarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarOrdenActionPerformed
         this.dispose();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //iniciamos frame inicio
-                new Start().setVisible(true);
-            }
-        });
+        Llamados.login();
     }//GEN-LAST:event_regresarOrdenActionPerformed
 
     private void tablaProductosBodegaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosBodegaMouseClicked
@@ -243,29 +240,24 @@ public class Bodega extends javax.swing.JFrame {
 
     private void productosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosButtonActionPerformed
         this.dispose();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    //iniciamos frame inicio
-                    new Producto_Bodega().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Bodega.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+        Llamados.llamarProductoBodega();
     }//GEN-LAST:event_productosButtonActionPerformed
 
     private void modificarProductoBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarProductoBodegaActionPerformed
         try {
-            if(textProveedor.getText().isEmpty()||textUbicacion.getText().isEmpty()||textCantidad.getText().isEmpty()){
+            if (textProveedor.getText().isEmpty() || textUbicacion.getText().isEmpty() || textCantidad.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No dejes casillas vacias");//Mensaje casilla vacia
-            }else{
-            ConexionBD.editarProductosBodega(textID,textCodigoProducto,textProveedor,textUbicacion,textCantidad);
-            ConexionBD.listarProductosBodega(tablaProductosBodega);
+            } else {
+                String id=textID.getText();
+                String codigoProducto=textCodigoProducto.getText();
+                String proveedor=textProveedor.getText();
+                String ubicacion= textUbicacion.getText();
+                int cantidad= Integer.parseInt(textCantidad.getText());
+                ConexionBD.editarProductosBodega(id, codigoProducto, proveedor, ubicacion, cantidad);
+                ConexionBD.listarProductosBodega(tablaProductosBodega);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "No se pudo modificar el archivo"+ex);
+            JOptionPane.showMessageDialog(this, "No se pudo modificar el archivo" + ex);
         }
     }//GEN-LAST:event_modificarProductoBodegaActionPerformed
 
@@ -274,12 +266,8 @@ public class Bodega extends javax.swing.JFrame {
     }//GEN-LAST:event_textUbicacionActionPerformed
 
     private void textCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCantidadKeyTyped
-        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
-        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
-        }
+        //metodo de restriccion de letras
+        Restricciones.restringirLetras(evt);
     }//GEN-LAST:event_textCantidadKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
