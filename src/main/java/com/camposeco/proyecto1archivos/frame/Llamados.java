@@ -6,6 +6,7 @@
 package com.camposeco.proyecto1archivos.frame;
 
 import com.camposeco.proyecto1archivos.frame.administrador.Administrador;
+import com.camposeco.proyecto1archivos.frame.administrador.Administrador_Reportes;
 import com.camposeco.proyecto1archivos.frame.bodega.Bodega;
 import com.camposeco.proyecto1archivos.frame.bodega.Producto_Bodega;
 import com.camposeco.proyecto1archivos.frame.inventario.Inventario;
@@ -97,6 +98,18 @@ public class Llamados {
                     new Administrador().setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+    public static void llamarAdministradorReportes(){
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    //iniciamos frame inicio
+                    new Administrador_Reportes().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

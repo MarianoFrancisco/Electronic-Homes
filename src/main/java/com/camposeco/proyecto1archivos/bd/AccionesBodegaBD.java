@@ -79,9 +79,6 @@ public class AccionesBodegaBD {
             }
             pST.setString(5, codigo);
             pST.execute();
-            sT.close();
-            rS.close();
-            pST.close();
             JOptionPane.showMessageDialog(null, "Producto en bodega modificado correctamente "+codigo);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al modificar el producto en bodega "+codigo);
@@ -145,7 +142,7 @@ public class AccionesBodegaBD {
         rS = sT.executeQuery(instruccionSql);
         while(rS.next()){
             cajaOpciones.addItem(rS.getString(1));
-        }
+        }        
     }
     public static void agregarProductoBodega(Connection cnBD,Statement sT,ResultSet rS,PreparedStatement pST,JComboBox cajaOpciones,JLabel codigo,JTextField proveedor,JTextField ubicacion,JTextField cantidad) throws SQLException{
         //0 no existe, 1 ya existe

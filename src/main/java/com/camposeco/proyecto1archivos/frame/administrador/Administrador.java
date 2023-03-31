@@ -8,6 +8,7 @@ package com.camposeco.proyecto1archivos.frame.administrador;
 import com.camposeco.proyecto1archivos.bd.ConexionBD;
 import com.camposeco.proyecto1archivos.Fondo;
 import com.camposeco.proyecto1archivos.Restricciones;
+import com.camposeco.proyecto1archivos.frame.Llamados;
 import com.camposeco.proyecto1archivos.frame.Start;
 import java.awt.Toolkit;
 import java.sql.SQLException;
@@ -278,21 +279,11 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_textCuiKeyTyped
 
     private void textTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textTelefonoKeyTyped
-        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
-        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
-        }
+        Restricciones.restringirLetras(evt);
     }//GEN-LAST:event_textTelefonoKeyTyped
 
     private void textEdadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textEdadKeyTyped
-        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
-        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
-        }
+        Restricciones.restringirLetras(evt);
     }//GEN-LAST:event_textEdadKeyTyped
 
     private void registrarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarEmpleadosActionPerformed
@@ -315,16 +306,7 @@ public class Administrador extends javax.swing.JFrame {
 
     private void generarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarReporteActionPerformed
         this.dispose();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    //iniciamos frame inicio
-                    new Administrador_Reportes().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+        Llamados.llamarAdministradorReportes();
     }//GEN-LAST:event_generarReporteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

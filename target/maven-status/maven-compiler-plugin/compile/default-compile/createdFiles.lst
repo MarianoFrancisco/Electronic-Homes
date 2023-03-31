@@ -1,6 +1,5 @@
 com\camposeco\proyecto1archivos\frame\bodega\Bodega$1.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$19.class
-com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$14.class
 com\camposeco\proyecto1archivos\frame\inventario\Inventario$6.class
 com\camposeco\proyecto1archivos\frame\inventario\Inventario$3.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$7.class
@@ -13,6 +12,7 @@ com\camposeco\proyecto1archivos\frame\vendedor\Vendedor_Clientes$6.class
 com\camposeco\proyecto1archivos\frame\inventario\Inventario$9.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$6.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador_Reportes$8.class
+com\camposeco\proyecto1archivos\frame\Llamados$8.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador_Reportes.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$11.class
@@ -32,7 +32,6 @@ com\camposeco\proyecto1archivos\bd\AccionesVendedorBD$1.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador_Reportes$6.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$2.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$4.class
-com\camposeco\proyecto1archivos\frame\administrador\Administrador$14.class
 com\camposeco\proyecto1archivos\Encriptacion.class
 com\camposeco\proyecto1archivos\bd\ConexionBD.class
 com\camposeco\proyecto1archivos\frame\inventario\Inventario$4.class
@@ -65,6 +64,7 @@ com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$10.class
 com\camposeco\proyecto1archivos\frame\Start$1.class
 com\camposeco\proyecto1archivos\bd\AccionesAdministradorBD.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$15.class
+com\camposeco\proyecto1archivos\frame\Llamados$7.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador$8.class
 com\camposeco\proyecto1archivos\frame\bodega\Bodega.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$6.class
