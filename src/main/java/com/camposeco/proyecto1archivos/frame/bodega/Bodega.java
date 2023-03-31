@@ -248,13 +248,18 @@ public class Bodega extends javax.swing.JFrame {
             if (textProveedor.getText().isEmpty() || textUbicacion.getText().isEmpty() || textCantidad.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No dejes casillas vacias");//Mensaje casilla vacia
             } else {
-                String id=textID.getText();
-                String codigoProducto=textCodigoProducto.getText();
-                String proveedor=textProveedor.getText();
-                String ubicacion= textUbicacion.getText();
-                int cantidad= Integer.parseInt(textCantidad.getText());
-                ConexionBD.editarProductosBodega(id, codigoProducto, proveedor, ubicacion, cantidad);
-                ConexionBD.listarProductosBodega(tablaProductosBodega);
+                String tmp = textCantidad.getText();
+                if (Restricciones.verificarCantidad(tmp)) {
+                    String id = textID.getText();
+                    String codigoProducto = textCodigoProducto.getText();
+                    String proveedor = textProveedor.getText();
+                    String ubicacion = textUbicacion.getText();
+                    int cantidad = Integer.parseInt(tmp);
+                    ConexionBD.editarProductosBodega(id, codigoProducto, proveedor, ubicacion, cantidad);
+                    ConexionBD.listarProductosBodega(tablaProductosBodega);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ingresa un numero entero en la cantidad");
+                }
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo modificar el archivo" + ex);

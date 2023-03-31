@@ -7,6 +7,7 @@ package com.camposeco.proyecto1archivos.frame.bodega;
 
 import com.camposeco.proyecto1archivos.frame.inventario.*;
 import com.camposeco.proyecto1archivos.Fondo;
+import com.camposeco.proyecto1archivos.Restricciones;
 import com.camposeco.proyecto1archivos.bd.ConexionBD;
 import java.awt.Toolkit;
 import java.sql.SQLException;
@@ -161,6 +162,11 @@ public class Producto_Bodega extends javax.swing.JFrame {
         textCodigoCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textCodigoCrearActionPerformed(evt);
+            }
+        });
+        textCodigoCrear.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textCodigoCrearKeyTyped(evt);
             }
         });
         getContentPane().add(textCodigoCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, 220, 30));
@@ -371,7 +377,13 @@ public class Producto_Bodega extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No dejes casillas vacias");//Mensaje casilla vacia
         }else{
             try {
-                ConexionBD.ingresarBodega(bodegaLista,textCodigoIngresar, textProveedorIngresar, textUbicacionIngresar, textCantidadIngresar);
+                String cantidadIngresar=textCantidadIngresar.getText();
+                if(Restricciones.verificarCantidad(cantidadIngresar)){
+                    ConexionBD.ingresarBodega(bodegaLista,textCodigoIngresar, textProveedorIngresar, textUbicacionIngresar, textCantidadIngresar);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Ingresa un numero entero");
+                }
+                
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error al ingresar producto a bodega");
             }
@@ -382,11 +394,19 @@ public class Producto_Bodega extends javax.swing.JFrame {
         if (textCodigoCrear.getText().isEmpty()||textNombreCrear.getText().isEmpty() || textMarcaCrear.getText().isEmpty() || textPrecioCrear.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No dejes casillas vacias");//Mensaje casilla vacia
         }else{
-            ConexionBD.crearProducto(textCodigoCrear, textNombreCrear, textMarcaCrear, textPrecioCrear);
-            try {
-                ConexionBD.listarProductos(tablaProductos);
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error acutalizar tabla");
+            String codigoCrear=textCodigoCrear.getText();
+            String nombreCrear=textNombreCrear.getText();
+            String marcaCrear = textMarcaCrear.getText();
+            String precioCrear = textPrecioCrear.getText();
+            if (Restricciones.verificarPrecio(precioCrear)) {
+                ConexionBD.crearProducto(textCodigoCrear, textNombreCrear, textMarcaCrear, textPrecioCrear);
+                try {
+                    ConexionBD.listarProductos(tablaProductos);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error acutalizar tabla");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingresa un formato de numero factible");
             }
         }
     }//GEN-LAST:event_crearNuevoProductoActionPerformed
@@ -425,14 +445,19 @@ public class Producto_Bodega extends javax.swing.JFrame {
 
     private void modificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarProductoActionPerformed
         try {
-            if(textNombreModificar.getText().isEmpty()||textMarcaModificar.getText().isEmpty()||textPrecioModificar.getText().isEmpty()){
+            if (textNombreModificar.getText().isEmpty() || textMarcaModificar.getText().isEmpty() || textPrecioModificar.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No dejes casillas vacias");//Mensaje casilla vacia
-            }else{
-            ConexionBD.editarProductos(textCodigoIngresar,textNombreModificar,textMarcaModificar,textPrecioModificar);
-            ConexionBD.listarProductos(tablaProductos);
+            } else {
+                String precioModificar = textPrecioModificar.getText();
+                if(Restricciones.verificarPrecio(precioModificar)){
+                    ConexionBD.editarProductos(textCodigoIngresar, textNombreModificar, textMarcaModificar, textPrecioModificar);
+                ConexionBD.listarProductos(tablaProductos);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Ingresa un formato de numero factible");
+                }
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "No se pudo modificar el archivo"+ex);
+            JOptionPane.showMessageDialog(this, "No se pudo modificar el archivo" + ex);
         }
     }//GEN-LAST:event_modificarProductoActionPerformed
 
@@ -454,12 +479,7 @@ public class Producto_Bodega extends javax.swing.JFrame {
     }//GEN-LAST:event_textPrecioModificarKeyTyped
 
     private void textPrecioCrearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPrecioCrearKeyTyped
-        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
-        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
-        }
+        Restricciones.restringirLetras(evt);
     }//GEN-LAST:event_textPrecioCrearKeyTyped
 
     private void textCantidadIngresarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCantidadIngresarKeyTyped
@@ -470,6 +490,10 @@ public class Producto_Bodega extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
         }
     }//GEN-LAST:event_textCantidadIngresarKeyTyped
+
+    private void textCodigoCrearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCodigoCrearKeyTyped
+        Restricciones.restringCodigoProducto(evt, textCodigoCrear.getText());
+    }//GEN-LAST:event_textCodigoCrearKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> bodegaLista;

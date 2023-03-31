@@ -58,7 +58,6 @@ com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$12.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador$5.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador_Reportes$4.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador.class
-com\camposeco\proyecto1archivos\frame\bodega\Bodega$8.class
 com\camposeco\proyecto1archivos\frame\Llamados$4.class
 com\camposeco\proyecto1archivos\Main$1.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$3.class
@@ -103,6 +102,7 @@ com\camposeco\proyecto1archivos\frame\Llamados$5.class
 com\camposeco\proyecto1archivos\bd\AccionesBodegaBD$2.class
 com\camposeco\proyecto1archivos\controladores\Empleado.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$5.class
+com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$20.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$10.class
 com\camposeco\proyecto1archivos\bd\AccionesAdministradorBD$1.class
 com\camposeco\proyecto1archivos\frame\bodega\Producto_Bodega$7.class
@@ -114,6 +114,7 @@ com\camposeco\proyecto1archivos\frame\inventario\Inventario$7.class
 com\camposeco\proyecto1archivos\bd\AccionesAdministradorBD$2.class
 com\camposeco\proyecto1archivos\frame\bodega\Bodega$3.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador$4.class
+com\camposeco\proyecto1archivos\frame\Llamados$6.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor$4.class
 com\camposeco\proyecto1archivos\frame\vendedor\Vendedor_Clientes$5.class
 com\camposeco\proyecto1archivos\frame\administrador\Administrador$10.class

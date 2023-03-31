@@ -7,6 +7,7 @@ package com.camposeco.proyecto1archivos.frame.administrador;
 
 import com.camposeco.proyecto1archivos.bd.ConexionBD;
 import com.camposeco.proyecto1archivos.Fondo;
+import com.camposeco.proyecto1archivos.Restricciones;
 import com.camposeco.proyecto1archivos.frame.Start;
 import java.awt.Toolkit;
 import java.sql.SQLException;
@@ -272,17 +273,8 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_textPasswordActionPerformed
 
     private void textCuiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCuiKeyTyped
-        if(textCui.getText().length()>12){//restringimos que no puede escribir mas de 13 digitos
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "El cui unicamente tiene 13 digitos");//Mensaje condicional digitos cui
-        }
-        char comprobarSiEsLetra = evt.getKeyChar();//Creamos variable tipo caracter para que no pueda escribir letras
-        if(Character.isLetter(comprobarSiEsLetra)){//Comprobamos si el usuario escribe letras
-            evt.consume();//el evento no permite seguir escribiendo
-            Toolkit.getDefaultToolkit().beep();//sonido de error
-            JOptionPane.showMessageDialog(null, "No puedes escribir letras, unicamente digitos");//Mensaje condicional no escribir letras
-        }
+        Restricciones.restringCui(evt, textCui.getText());
+        Restricciones.restringirLetras(evt);
     }//GEN-LAST:event_textCuiKeyTyped
 
     private void textTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textTelefonoKeyTyped
